@@ -1,0 +1,533 @@
+2021-12-09 16:07:41.890 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Starting ScadaApplication on DESKTOP-MAGQN00 with PID 22140 (M:\Code\Company_Project\JinCheng_platform\hnt-web-modules\hnt-web-scada\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2021-12-09 16:07:41.895 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - The following profiles are active: dev
+2021-12-09 16:07:43.272 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.bmts.heating.web.scada.app]' package. Please check your configuration.
+2021-12-09 16:07:43.895 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7171 (http)
+2021-12-09 16:07:43.906 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:07:43.907 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12-09 16:07:43.907 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2021-12-09 16:07:44.022 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12-09 16:07:44.022 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2050 ms
+2021-12-09 16:07:44.424 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2021-12-09 16:07:44.433 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-12-09 16:07:44.433 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2021-12-09 16:07:44.433 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2021-12-09 16:07:44.434 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-12-09 16:07:44.434 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+2021-12-09 16:07:44.434 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2021-12-09 16:07:44.434 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.bmts.heating.commons.container.quartz.config.QuartzJobFactory@2066e897
+2021-12-09 16:07:44.495 [main] INFO  com.bmts.heating.distribution.modle.ConsulModel - 检测consuld集群网络状态.............
+2021-12-09 16:07:45.122 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-12-09 16:07:45.181 [main] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [server1:9092, server2:9092, server3:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.2
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-12-09 16:07:45.219 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.5.0
+2021-12-09 16:07:45.220 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 66563e712b0b9f84
+2021-12-09 16:07:45.220 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1639037265218
+2021-12-09 16:07:45.239 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaConsumerExecutorConfig - start asyncKafkaConsumerExecutor.........
+2021-12-09 16:07:45.239 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:07:45.240 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-consumer'
+2021-12-09 16:07:45.244 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaProduceExecutorConfig - start asyncKafkaProduceExecutor.........
+2021-12-09 16:07:45.244 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:07:45.244 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-produce'
+2021-12-09 16:07:45.248 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:07:45.248 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'async-token'
+2021-12-09 16:07:46.524 [main] INFO  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 20e4e22d-799b-4201-a1d8-5092e4354192
+
+2021-12-09 16:07:46.624 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@188b9a1e, org.springframework.security.web.context.SecurityContextPersistenceFilter@485547ac, org.springframework.security.web.header.HeaderWriterFilter@41092c8, org.springframework.security.web.authentication.logout.LogoutFilter@22657db1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@350d9d23, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@474deb4c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@423d662a, org.springframework.security.web.session.SessionManagementFilter@4a225014, org.springframework.security.web.access.ExceptionTranslationFilter@470ad01c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f465ae]
+2021-12-09 16:07:46.675 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:07:46.700 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7171 (http) with context path ''
+2021-12-09 16:07:46.702 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-12-09 16:07:46.729 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-12-09 16:07:46.772 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-12-09 16:07:46.954 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_1
+2021-12-09 16:07:47.010 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+2021-12-09 16:07:47.105 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: curveUsingPOST_1
+2021-12-09 16:07:47.108 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_2
+2021-12-09 16:07:47.166 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: tableUsingPOST_1
+2021-12-09 16:07:47.182 [main] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2021-12-09 16:07:47.182 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-12-09 16:07:47.190 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - 注册远程令牌的本地缓存...............
+2021-12-09 16:07:47.192 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:bussiness_baseInfomation本地令牌缓存............. [0m
+2021-12-09 16:07:47.271 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:gather_search本地令牌缓存............. [0m
+2021-12-09 16:07:47.302 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Started ScadaApplication in 5.987 seconds (JVM running for 7.849)
+2021-12-09 16:07:48.111 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.HeartServer - [31;4m 连接服务治理中心成功 [0m
+2021-12-09 16:07:48.159 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.web.HeartBeatWebClientHandler - registry application server success!
+2021-12-09 16:08:41.275 [http-nio-7171-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-09 16:08:41.275 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-12-09 16:08:41.286 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2021-12-09 16:19:35.466 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:19:35.897 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'async-token'
+2021-12-09 16:19:35.898 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-produce'
+2021-12-09 16:19:35.898 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-consumer'
+2021-12-09 16:19:35.899 [SpringContextShutdownHook] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2021-12-09 16:19:35.900 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2021-12-09 16:19:35.900 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:19:35.900 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-12-09 16:19:40.738 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Starting ScadaApplication on DESKTOP-MAGQN00 with PID 20452 (M:\Code\Company_Project\JinCheng_platform\hnt-web-modules\hnt-web-scada\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2021-12-09 16:19:40.742 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - The following profiles are active: dev
+2021-12-09 16:19:42.082 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.bmts.heating.web.scada.app]' package. Please check your configuration.
+2021-12-09 16:19:42.671 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7171 (http)
+2021-12-09 16:19:42.681 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:19:42.681 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12-09 16:19:42.681 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2021-12-09 16:19:42.780 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12-09 16:19:42.780 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1974 ms
+2021-12-09 16:19:43.157 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2021-12-09 16:19:43.165 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-12-09 16:19:43.165 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2021-12-09 16:19:43.166 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2021-12-09 16:19:43.167 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-12-09 16:19:43.167 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+2021-12-09 16:19:43.167 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2021-12-09 16:19:43.167 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.bmts.heating.commons.container.quartz.config.QuartzJobFactory@7296fe0b
+2021-12-09 16:19:43.226 [main] INFO  com.bmts.heating.distribution.modle.ConsulModel - 检测consuld集群网络状态.............
+2021-12-09 16:19:43.799 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-12-09 16:19:43.861 [main] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [server1:9092, server2:9092, server3:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.2
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-12-09 16:19:43.898 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.5.0
+2021-12-09 16:19:43.899 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 66563e712b0b9f84
+2021-12-09 16:19:43.899 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1639037983897
+2021-12-09 16:19:43.916 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaConsumerExecutorConfig - start asyncKafkaConsumerExecutor.........
+2021-12-09 16:19:43.916 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:19:43.917 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-consumer'
+2021-12-09 16:19:43.922 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaProduceExecutorConfig - start asyncKafkaProduceExecutor.........
+2021-12-09 16:19:43.922 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:19:43.922 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-produce'
+2021-12-09 16:19:43.925 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:19:43.926 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'async-token'
+2021-12-09 16:19:45.085 [main] INFO  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: a153e67e-c0e4-4b73-8457-5394ef47bb7c
+
+2021-12-09 16:19:45.163 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@220a5163, org.springframework.security.web.context.SecurityContextPersistenceFilter@460df441, org.springframework.security.web.header.HeaderWriterFilter@34604b32, org.springframework.security.web.authentication.logout.LogoutFilter@4c5c0306, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d65c0ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@33478a2f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6158113e, org.springframework.security.web.session.SessionManagementFilter@5edaa572, org.springframework.security.web.access.ExceptionTranslationFilter@d1973e8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@57df93c1]
+2021-12-09 16:19:45.204 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:19:45.219 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7171 (http) with context path ''
+2021-12-09 16:19:45.220 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-12-09 16:19:45.238 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-12-09 16:19:45.273 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-12-09 16:19:45.449 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_1
+2021-12-09 16:19:45.503 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+2021-12-09 16:19:45.586 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: curveUsingPOST_1
+2021-12-09 16:19:45.588 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_2
+2021-12-09 16:19:45.656 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: tableUsingPOST_1
+2021-12-09 16:19:45.672 [main] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2021-12-09 16:19:45.673 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-12-09 16:19:45.679 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - 注册远程令牌的本地缓存...............
+2021-12-09 16:19:45.681 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:bussiness_baseInfomation本地令牌缓存............. [0m
+2021-12-09 16:19:45.766 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:gather_search本地令牌缓存............. [0m
+2021-12-09 16:19:45.799 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Started ScadaApplication in 5.599 seconds (JVM running for 7.637)
+2021-12-09 16:19:46.638 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.HeartServer - [31;4m 连接服务治理中心成功 [0m
+2021-12-09 16:19:46.685 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.web.HeartBeatWebClientHandler - registry application server success!
+2021-12-09 16:20:22.432 [http-nio-7171-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-09 16:20:22.432 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-12-09 16:20:22.442 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2021-12-09 16:21:06.783 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.784 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.785 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.786 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:06.787 [nioEventLoopGroup-2-1] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;36m 本地缓存令牌gather_search:gatherSearch6失效,移除token.................... [0m
+2021-12-09 16:21:18.805 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:21:19.234 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'async-token'
+2021-12-09 16:21:19.234 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-produce'
+2021-12-09 16:21:19.234 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-consumer'
+2021-12-09 16:21:19.236 [SpringContextShutdownHook] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2021-12-09 16:21:19.236 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2021-12-09 16:21:19.236 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:21:19.237 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-12-09 16:21:24.742 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Starting ScadaApplication on DESKTOP-MAGQN00 with PID 8452 (M:\Code\Company_Project\JinCheng_platform\hnt-web-modules\hnt-web-scada\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2021-12-09 16:21:24.746 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - The following profiles are active: dev
+2021-12-09 16:21:26.049 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.bmts.heating.web.scada.app]' package. Please check your configuration.
+2021-12-09 16:21:26.665 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7171 (http)
+2021-12-09 16:21:26.675 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:21:26.675 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12-09 16:21:26.676 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2021-12-09 16:21:26.773 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12-09 16:21:26.774 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1959 ms
+2021-12-09 16:21:27.133 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2021-12-09 16:21:27.141 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-12-09 16:21:27.141 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2021-12-09 16:21:27.142 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2021-12-09 16:21:27.142 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-12-09 16:21:27.142 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+2021-12-09 16:21:27.142 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2021-12-09 16:21:27.142 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.bmts.heating.commons.container.quartz.config.QuartzJobFactory@72168258
+2021-12-09 16:21:27.202 [main] INFO  com.bmts.heating.distribution.modle.ConsulModel - 检测consuld集群网络状态.............
+2021-12-09 16:21:27.744 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-12-09 16:21:27.803 [main] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [server1:9092, server2:9092, server3:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.2
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-12-09 16:21:27.839 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.5.0
+2021-12-09 16:21:27.840 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 66563e712b0b9f84
+2021-12-09 16:21:27.840 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1639038087837
+2021-12-09 16:21:27.858 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaConsumerExecutorConfig - start asyncKafkaConsumerExecutor.........
+2021-12-09 16:21:27.859 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:21:27.859 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-consumer'
+2021-12-09 16:21:27.863 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaProduceExecutorConfig - start asyncKafkaProduceExecutor.........
+2021-12-09 16:21:27.864 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:21:27.864 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-produce'
+2021-12-09 16:21:27.867 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:21:27.867 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'async-token'
+2021-12-09 16:21:29.023 [main] INFO  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: c97de7f6-e16c-447c-b79d-f1f722789755
+
+2021-12-09 16:21:29.099 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c7607e5, org.springframework.security.web.context.SecurityContextPersistenceFilter@5c7d675c, org.springframework.security.web.header.HeaderWriterFilter@659e003e, org.springframework.security.web.authentication.logout.LogoutFilter@2eb31735, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@981d9d2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5478597, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@533a27f8, org.springframework.security.web.session.SessionManagementFilter@4db45d, org.springframework.security.web.access.ExceptionTranslationFilter@256d8f17, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48d14ea0]
+2021-12-09 16:21:29.138 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:21:29.155 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7171 (http) with context path ''
+2021-12-09 16:21:29.156 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-12-09 16:21:29.178 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-12-09 16:21:29.215 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-12-09 16:21:29.388 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_1
+2021-12-09 16:21:29.443 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+2021-12-09 16:21:29.528 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: curveUsingPOST_1
+2021-12-09 16:21:29.530 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_2
+2021-12-09 16:21:29.590 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: tableUsingPOST_1
+2021-12-09 16:21:29.613 [main] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2021-12-09 16:21:29.614 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-12-09 16:21:29.619 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - 注册远程令牌的本地缓存...............
+2021-12-09 16:21:29.621 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:bussiness_baseInfomation本地令牌缓存............. [0m
+2021-12-09 16:21:29.702 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:gather_search本地令牌缓存............. [0m
+2021-12-09 16:21:29.733 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Started ScadaApplication in 5.598 seconds (JVM running for 7.962)
+2021-12-09 16:21:30.576 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.HeartServer - [31;4m 连接服务治理中心成功 [0m
+2021-12-09 16:21:30.623 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.web.HeartBeatWebClientHandler - registry application server success!
+2021-12-09 16:21:34.791 [http-nio-7171-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-09 16:21:34.791 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-12-09 16:21:34.802 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2021-12-09 16:24:36.804 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:24:37.225 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'async-token'
+2021-12-09 16:24:37.225 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-produce'
+2021-12-09 16:24:37.225 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-consumer'
+2021-12-09 16:24:37.226 [SpringContextShutdownHook] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2021-12-09 16:24:37.226 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2021-12-09 16:24:37.226 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 16:24:37.227 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-12-09 16:24:41.919 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Starting ScadaApplication on DESKTOP-MAGQN00 with PID 25004 (M:\Code\Company_Project\JinCheng_platform\hnt-web-modules\hnt-web-scada\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2021-12-09 16:24:41.922 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - The following profiles are active: dev
+2021-12-09 16:24:43.186 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.bmts.heating.web.scada.app]' package. Please check your configuration.
+2021-12-09 16:24:43.874 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7171 (http)
+2021-12-09 16:24:43.890 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:24:43.891 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12-09 16:24:43.891 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2021-12-09 16:24:44.048 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12-09 16:24:44.048 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2086 ms
+2021-12-09 16:24:44.590 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2021-12-09 16:24:44.601 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-12-09 16:24:44.601 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2021-12-09 16:24:44.602 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2021-12-09 16:24:44.603 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-12-09 16:24:44.603 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+2021-12-09 16:24:44.603 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2021-12-09 16:24:44.603 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.bmts.heating.commons.container.quartz.config.QuartzJobFactory@776e7dfb
+2021-12-09 16:24:44.681 [main] INFO  com.bmts.heating.distribution.modle.ConsulModel - 检测consuld集群网络状态.............
+2021-12-09 16:24:45.348 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-12-09 16:24:45.430 [main] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [server1:9092, server2:9092, server3:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.2
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-12-09 16:24:45.473 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.5.0
+2021-12-09 16:24:45.474 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 66563e712b0b9f84
+2021-12-09 16:24:45.474 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1639038285472
+2021-12-09 16:24:45.495 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaConsumerExecutorConfig - start asyncKafkaConsumerExecutor.........
+2021-12-09 16:24:45.495 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:24:45.497 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-consumer'
+2021-12-09 16:24:45.503 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaProduceExecutorConfig - start asyncKafkaProduceExecutor.........
+2021-12-09 16:24:45.503 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:24:45.503 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-produce'
+2021-12-09 16:24:45.507 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2021-12-09 16:24:45.508 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'async-token'
+2021-12-09 16:24:46.720 [main] INFO  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 16e0f087-e244-42cb-91c6-e68e5d6164b6
+
+2021-12-09 16:24:46.792 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@da5b46f, org.springframework.security.web.context.SecurityContextPersistenceFilter@90c01ab, org.springframework.security.web.header.HeaderWriterFilter@789f5552, org.springframework.security.web.authentication.logout.LogoutFilter@1be3a294, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71e55e48, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@504b4a97, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@99f75e4, org.springframework.security.web.session.SessionManagementFilter@112b3298, org.springframework.security.web.access.ExceptionTranslationFilter@63b2418e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f1e18b1]
+2021-12-09 16:24:46.830 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7171"]
+2021-12-09 16:24:46.847 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7171 (http) with context path ''
+2021-12-09 16:24:46.848 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-12-09 16:24:46.867 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-12-09 16:24:46.902 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-12-09 16:24:47.071 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_1
+2021-12-09 16:24:47.126 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+2021-12-09 16:24:47.206 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: curveUsingPOST_1
+2021-12-09 16:24:47.208 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_2
+2021-12-09 16:24:47.257 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: tableUsingPOST_1
+2021-12-09 16:24:47.273 [main] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2021-12-09 16:24:47.273 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2021-12-09 16:24:47.279 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - 注册远程令牌的本地缓存...............
+2021-12-09 16:24:47.281 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:bussiness_baseInfomation本地令牌缓存............. [0m
+2021-12-09 16:24:47.355 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:gather_search本地令牌缓存............. [0m
+2021-12-09 16:24:47.383 [main] INFO  com.bmts.heating.web.scada.app.ScadaApplication - Started ScadaApplication in 5.808 seconds (JVM running for 7.155)
+2021-12-09 16:24:48.225 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.HeartServer - [31;4m 连接服务治理中心成功 [0m
+2021-12-09 16:24:48.293 [nioEventLoopGroup-2-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.web.HeartBeatWebClientHandler - registry application server success!
+2021-12-09 16:24:53.546 [http-nio-7171-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-09 16:24:53.546 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-12-09 16:24:53.556 [http-nio-7171-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2021-12-09 17:14:06.665 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 17:14:07.295 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'async-token'
+2021-12-09 17:14:07.296 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-produce'
+2021-12-09 17:14:07.296 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-consumer'
+2021-12-09 17:14:07.297 [SpringContextShutdownHook] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2021-12-09 17:14:07.297 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2021-12-09 17:14:07.297 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2021-12-09 17:14:07.297 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.

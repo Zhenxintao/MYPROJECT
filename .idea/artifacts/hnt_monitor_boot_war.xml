@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-monitor-boot:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-monitor-boot</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="monitor.war">
+      <element id="artifact" artifact-name="hnt-monitor-boot:war exploded" />
+    </root>
+  </artifact>
+</component>

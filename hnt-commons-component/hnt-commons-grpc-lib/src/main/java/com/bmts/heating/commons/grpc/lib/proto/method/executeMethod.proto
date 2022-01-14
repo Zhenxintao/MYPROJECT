@@ -1,0 +1,10 @@
+syntax = "proto3";
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.method";
+service ExecuteMethod{
+   rpc execute_method(MethodName) returns (BoolResult){}
+}
+
+message MethodName{
+  string name = 1;
+}

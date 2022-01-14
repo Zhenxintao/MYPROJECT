@@ -1,0 +1,7 @@
+server:
+  port: 6905
+spring:
+  profiles:
+    active: ${package.environment}
+  application:
+    name: application_forcast_web

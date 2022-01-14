@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-application-bussiness-baseInformation:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-application/hnt-application-bussiness-baseInformation/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-application-bussiness-baseInformation</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="baseInformation.war">
+      <element id="artifact" artifact-name="hnt-application-bussiness-baseInformation:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-grpc-cacheLibrary-boot:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-grpc/hnt-grpc-cacheLibrary/hnt-grpc-cacheLibrary-boot/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-grpc-cacheLibrary-boot</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="cacheLibrary.war">
+      <element id="artifact" artifact-name="hnt-grpc-cacheLibrary-boot:war exploded" />
+    </root>
+  </artifact>
+</component>

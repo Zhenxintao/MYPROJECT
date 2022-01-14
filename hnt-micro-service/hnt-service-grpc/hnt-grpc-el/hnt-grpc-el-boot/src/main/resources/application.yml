@@ -1,0 +1,40 @@
+server:
+  port: 8484
+spring:
+  application:
+    name: elasticsearch-server
+    id: 666666688885237
+#  profiles:
+#    include: kafka
+#  elasticsearch:
+#    rest:
+#      uris: 10.0.31.13:9200,10.0.31.14:9200,10.0.31.32:9200
+#      read-timeout: 30s #默认为30s
+micro:
+  server:
+    host: 10.0.2.71
+    port: 6800
+    name: elasticserch
+    tokens: 10000
+  pool:
+    maxTotal: 30  #池中的最大连接数
+    minIdle: 0    #最少的空闲连接数
+    maxIdle: 50    #最多的空闲连接数
+    maxWaitMillis: 1    #当连接池资源耗尽时,调用者最大阻塞的时间,超时时抛出异常 单位:毫秒数
+    lifo: true    #连接池存放池化对象方式,true放在空闲队列最前面,false放在空闲队列最后
+    blockWhenExhausted: true  #连接耗尽时是否阻塞,默认为true
+grpc:
+  server:
+    host: 10.0.2.71
+    port: 6800
+#topics:
+#  consumerOrders:
+#    #    - topicName: pointl #需要消费的kafka的主题名称
+#    - topicName: data-cleaning-produce #需要消费的kafka的主题名称
+#      group_id: elastic_1 #消费组名称
+#      policy: 1  #消费策略 0：单线程，单消费；1：多线程,单组消费多分区(一个group消费所有分区) 2：多线程,多组消费多分区(一个group消费一个分区,多个group消费所有分区)
+#      application_num: 3 #服务实例数 应该小于服务实际实例数、节点数
+#tscc:
+#  collect_time: 8 #采集周期 分钟
+#  query_time_before: 8 #查询时间置前策略 小时
+#  quality_strap_error_code: -1

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hnt-commons-component</artifactId>
+        <groupId>com.bmts.heating</groupId>
+        <version>2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hnt-commons-db</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-utils</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.21</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-basement</artifactId>
+            <version>2.0</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-generator</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-entiy</artifactId>
+            <version>2.0</version>
+        </dependency>
+    </dependencies>
+</project>

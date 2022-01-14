@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-application/hnt-application-bussiness-baseInformation" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-application/hnt-application-bussiness-gatherSearch/hnt-bussiness-boot" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-application/hnt-application-bussiness-netBalance" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-grpc/hnt-grpc-cacheLibrary/hnt-grpc-cacheLibrary-boot" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-grpc/hnt-grpc-el/hnt-grpc-el-boot" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-job/hnt-job-start" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-micro-service/hnt-service-monitor/hnt-monitor-boot" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-auth" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-backStage" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-balance" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-energy" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-forecast" />
+    <file type="web" url="file://$PROJECT_DIR$/hnt-web-modules/hnt-web-scada" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

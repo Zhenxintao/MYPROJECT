@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "tdengine/queryPoints.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.tdengine";
+
+service QueryAggregate{
+  rpc query(aggregateQuery) returns (Response) {}
+}
+message aggregateQuery{
+  int64 startTime = 1;
+  int64 endTime = 2;
+  repeated aggregatePoint points = 3;
+  repeated int32 groupid = 4;
+  string tableName = 5;
+  Original original = 6;
+  int32 limit = 7;
+  int32 offset = 8;
+  string order = 9;
+  GroupType groupType = 10;
+}
+enum GroupType{
+  singal = 0;
+  group = 1;
+}
+message aggregatePoint{
+  string pointName = 1;
+  aggregateType aggregateType = 2;
+}
+enum aggregateType{
+  avg = 0;
+  sum = 1;
+  max = 2;
+  min = 3;
+  TWA = 4;
+  STDDEV = 5;
+  diff = 6;
+}

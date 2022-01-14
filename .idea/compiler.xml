@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hnt-grpc-cacheLibrary-server" />
+        <module name="hnt-grpc-dataCleaning-boot" />
+        <module name="hnt-web-balance" />
+        <module name="hnt-web-energy" />
+        <module name="hnt-monitor-plugins-second" />
+        <module name="hnt-middleware-grpc-td" />
+        <module name="hnt-grpc-dataCleaning-server" />
+        <module name="hnt-compute-forecast" />
+        <module name="hnt-bussiness-common" />
+        <module name="hnt-task-history" />
+        <module name="hnt-middleware-grpc-cacheLibrary" />
+        <module name="hnt-monitor-plugins-jk" />
+        <module name="hnt-monitor-second" />
+        <module name="hnt-task-transport" />
+        <module name="hnt-web-backStage" />
+        <module name="hnt-grpc-pattern-server" />
+        <module name="hnt-commons-jwt" />
+        <module name="hnt-web-forecast" />
+        <module name="hnt-grpc-pattern-boot" />
+        <module name="hnt-config-grpc" />
+        <module name="hnt-commons-history-lib" />
+        <module name="hnt-monitor-plugins-pvss" />
+        <module name="hnt-grpc-el-boot" />
+        <module name="hnt-compute-wash" />
+        <module name="hnt-job-start" />
+        <module name="hnt-task-forecast" />
+        <module name="hnt-commons-utils" />
+        <module name="hnt-commons-storm" />
+        <module name="hnt-web-auth" />
+        <module name="hnt-middleware-grpc-dataCleaing" />
+        <module name="hnt-commons-grpc-lib" />
+        <module name="hnt-web-config" />
+        <module name="hnt-commons-entiy" />
+        <module name="hnt-web-common" />
+        <module name="hnt-compute-common" />
+        <module name="hnt-commons-basement" />
+        <module name="hnt-stream-flink" />
+        <module name="hnt-application-bussiness-netBalance" />
+        <module name="hnt-compute-history" />
+        <module name="hnt-commons-logs" />
+        <module name="hnt-compute-run-analyses" />
+        <module name="hnt-task-storm" />
+        <module name="hnt-application-bussiness-baseInformation" />
+        <module name="hnt-commons-redis" />
+        <module name="hnt-monitor-driver" />
+        <module name="hnt-bussiness-boot" />
+        <module name="hnt-middleware-grpc-monitor" />
+        <module name="hnt-config-assembly" />
+        <module name="hnt-bussiness-historySearch" />
+        <module name="hnt-middleware-grpc-el" />
+        <module name="hnt-web-scada" />
+        <module name="hnt-bussiness-cacheSearch" />
+        <module name="hnt-commons-db" />
+        <module name="hnt-grpc-el-server" />
+        <module name="hnt-monitor-boot" />
+        <module name="hnt-middleware-grpc-pattern" />
+        <module name="hnt-config-application" />
+        <module name="hnt-commons-auth" />
+        <module name="hnt-grpc-cacheLibrary-boot" />
+        <module name="hnt-config-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Heating-Net-Platform" target="1.8" />
+      <module name="hnt-application-bussiness-baseInformation" target="1.8" />
+      <module name="hnt-application-bussiness-gatherSearch" target="1.8" />
+      <module name="hnt-application-bussiness-netBalance" target="1.8" />
+      <module name="hnt-bussiness-boot" target="1.8" />
+      <module name="hnt-bussiness-cacheSearch" target="1.8" />
+      <module name="hnt-bussiness-common" target="1.8" />
+      <module name="hnt-bussiness-historySearch" target="1.8" />
+      <module name="hnt-commons-auth" target="1.8" />
+      <module name="hnt-commons-basement" target="1.8" />
+      <module name="hnt-commons-cache-lib" target="1.8" />
+      <module name="hnt-commons-component" target="1.8" />
+      <module name="hnt-commons-compute" target="1.8" />
+      <module name="hnt-commons-db" target="1.8" />
+      <module name="hnt-commons-entiy" target="1.8" />
+      <module name="hnt-commons-grpc-lib" target="1.8" />
+      <module name="hnt-commons-history-lib" target="1.8" />
+      <module name="hnt-commons-jwt" target="1.8" />
+      <module name="hnt-commons-logs" target="1.8" />
+      <module name="hnt-commons-redis" target="1.8" />
+      <module name="hnt-commons-storm" target="1.8" />
+      <module name="hnt-commons-utils" target="1.8" />
+      <module name="hnt-compute-common" target="1.8" />
+      <module name="hnt-compute-forecast" target="1.8" />
+      <module name="hnt-compute-history" target="1.8" />
+      <module name="hnt-compute-run-analyses" target="1.8" />
+      <module name="hnt-compute-wash" target="1.8" />
+      <module name="hnt-config-application" target="1.8" />
+      <module name="hnt-config-assembly" target="1.8" />
+      <module name="hnt-config-grpc" target="1.8" />
+      <module name="hnt-config-web" target="1.8" />
+      <module name="hnt-grpc-cacheLibrary" target="1.8" />
+      <module name="hnt-grpc-cacheLibrary-boot" target="1.8" />
+      <module name="hnt-grpc-cacheLibrary-server" target="1.8" />
+      <module name="hnt-grpc-dataCleaning" target="1.8" />
+      <module name="hnt-grpc-dataCleaning-boot" target="1.8" />
+      <module name="hnt-grpc-dataCleaning-server" target="1.8" />
+      <module name="hnt-grpc-el" target="1.8" />
+      <module name="hnt-grpc-el-boot" target="1.8" />
+      <module name="hnt-grpc-el-server" target="1.8" />
+      <module name="hnt-grpc-pattern" target="1.8" />
+      <module name="hnt-grpc-pattern-boot" target="1.8" />
+      <module name="hnt-grpc-pattern-server" target="1.8" />
+      <module name="hnt-job-start" target="1.8" />
+      <module name="hnt-micro-service" target="1.8" />
+      <module name="hnt-middleware-grpc-cacheLibrary" target="1.8" />
+      <module name="hnt-middleware-grpc-dataCleaing" target="1.8" />
+      <module name="hnt-middleware-grpc-el" target="1.8" />
+      <module name="hnt-middleware-grpc-monitor" target="1.8" />
+      <module name="hnt-middleware-grpc-pattern" target="1.8" />
+      <module name="hnt-middleware-grpc-td" target="1.8" />
+      <module name="hnt-monitor-boot" target="1.8" />
+      <module name="hnt-monitor-driver" target="1.8" />
+      <module name="hnt-monitor-plugins" target="1.8" />
+      <module name="hnt-monitor-plugins-jk" target="1.8" />
+      <module name="hnt-monitor-plugins-pvss" target="1.8" />
+      <module name="hnt-monitor-plugins-second" target="1.8" />
+      <module name="hnt-monitor-second" target="1.8" />
+      <module name="hnt-service-application" target="1.8" />
+      <module name="hnt-service-config" target="1.8" />
+      <module name="hnt-service-dataStream" target="1.8" />
+      <module name="hnt-service-grpc" target="1.8" />
+      <module name="hnt-service-job" target="1.8" />
+      <module name="hnt-service-middleware" target="1.8" />
+      <module name="hnt-service-monitor" target="1.8" />
+      <module name="hnt-stream-flink" target="1.8" />
+      <module name="hnt-task-forecast" target="1.8" />
+      <module name="hnt-task-history" target="1.8" />
+      <module name="hnt-task-storm" target="1.8" />
+      <module name="hnt-task-transport" target="1.8" />
+      <module name="hnt-web-auth" target="1.8" />
+      <module name="hnt-web-backStage" target="1.8" />
+      <module name="hnt-web-balance" target="1.8" />
+      <module name="hnt-web-common" target="1.8" />
+      <module name="hnt-web-config" target="1.8" />
+      <module name="hnt-web-energy" target="1.8" />
+      <module name="hnt-web-forecast" target="1.8" />
+      <module name="hnt-web-modules" target="1.8" />
+      <module name="hnt-web-scada" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hnt-application-bussiness-baseInformation" options="-parameters" />
+      <module name="hnt-application-bussiness-netBalance" options="-parameters" />
+      <module name="hnt-bussiness-boot" options="-parameters" />
+      <module name="hnt-bussiness-cacheSearch" options="-parameters" />
+      <module name="hnt-bussiness-common" options="-parameters" />
+      <module name="hnt-bussiness-historySearch" options="-parameters" />
+      <module name="hnt-commons-auth" options="-parameters" />
+      <module name="hnt-commons-basement" options="-parameters" />
+      <module name="hnt-commons-db" options="-parameters" />
+      <module name="hnt-commons-entiy" options="-parameters" />
+      <module name="hnt-commons-grpc-lib" options="-parameters" />
+      <module name="hnt-commons-history-lib" options="-parameters" />
+      <module name="hnt-commons-jwt" options="-parameters" />
+      <module name="hnt-commons-logs" options="-parameters" />
+      <module name="hnt-commons-redis" options="-parameters" />
+      <module name="hnt-commons-storm" options="-parameters" />
+      <module name="hnt-commons-utils" options="-parameters" />
+      <module name="hnt-compute-common" options="-parameters" />
+      <module name="hnt-compute-forecast" options="-parameters" />
+      <module name="hnt-compute-history" options="-parameters" />
+      <module name="hnt-compute-run-analyses" options="-parameters" />
+      <module name="hnt-compute-wash" options="-parameters" />
+      <module name="hnt-config-application" options="-parameters" />
+      <module name="hnt-config-assembly" options="-parameters" />
+      <module name="hnt-config-grpc" options="-parameters" />
+      <module name="hnt-config-web" options="-parameters" />
+      <module name="hnt-grpc-cacheLibrary-boot" options="-parameters" />
+      <module name="hnt-grpc-cacheLibrary-server" options="-parameters" />
+      <module name="hnt-grpc-dataCleaning-boot" options="-parameters" />
+      <module name="hnt-grpc-dataCleaning-server" options="-parameters" />
+      <module name="hnt-grpc-el-boot" options="-parameters" />
+      <module name="hnt-grpc-el-server" options="-parameters" />
+      <module name="hnt-grpc-pattern-boot" options="-parameters" />
+      <module name="hnt-grpc-pattern-server" options="-parameters" />
+      <module name="hnt-job-start" options="-parameters" />
+      <module name="hnt-middleware-grpc-cacheLibrary" options="-parameters" />
+      <module name="hnt-middleware-grpc-dataCleaing" options="-parameters" />
+      <module name="hnt-middleware-grpc-el" options="-parameters" />
+      <module name="hnt-middleware-grpc-monitor" options="-parameters" />
+      <module name="hnt-middleware-grpc-pattern" options="-parameters" />
+      <module name="hnt-middleware-grpc-td" options="-parameters" />
+      <module name="hnt-monitor-boot" options="-parameters" />
+      <module name="hnt-monitor-driver" options="-parameters" />
+      <module name="hnt-monitor-plugins-jk" options="-parameters" />
+      <module name="hnt-monitor-plugins-pvss" options="-parameters" />
+      <module name="hnt-monitor-plugins-second" options="-parameters" />
+      <module name="hnt-monitor-second" options="-parameters" />
+      <module name="hnt-stream-flink" options="-parameters" />
+      <module name="hnt-task-forecast" options="-parameters" />
+      <module name="hnt-task-history" options="-parameters" />
+      <module name="hnt-task-storm" options="-parameters" />
+      <module name="hnt-task-transport" options="-parameters" />
+      <module name="hnt-web-auth" options="-parameters" />
+      <module name="hnt-web-backStage" options="-parameters" />
+      <module name="hnt-web-balance" options="-parameters" />
+      <module name="hnt-web-common" options="-parameters" />
+      <module name="hnt-web-config" options="-parameters" />
+      <module name="hnt-web-energy" options="-parameters" />
+      <module name="hnt-web-forecast" options="-parameters" />
+      <module name="hnt-web-scada" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,12 @@
+server:
+  port: 7171
+spring:
+  profiles:
+    active: ${package.environment}
+  application:
+    name: application_scada
+
+
+
+auth:
+  appkey: bmts_monitor_key_5a8729065f498d

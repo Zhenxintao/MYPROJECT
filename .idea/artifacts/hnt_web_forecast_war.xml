@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-web-forecast:war">
+    <output-path>$PROJECT_DIR$/hnt-web-modules/hnt-web-forecast/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-web-forecast</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="forecast.war">
+      <element id="artifact" artifact-name="hnt-web-forecast:war exploded" />
+    </root>
+  </artifact>
+</component>

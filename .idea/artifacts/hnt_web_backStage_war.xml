@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-web-backStage:war">
+    <output-path>$PROJECT_DIR$/hnt-web-modules/hnt-web-backStage/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-web-backStage</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="backStage.war">
+      <element id="artifact" artifact-name="hnt-web-backStage:war exploded" />
+    </root>
+  </artifact>
+</component>

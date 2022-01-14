@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hnt-commons-cache-lib</artifactId>
+        <groupId>com.bmts.heating</groupId>
+        <version>2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <artifactId>hnt-commons-storm</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>2.0.0</version>
+            <!--            <scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>com.codahale.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>3.0.2</version>
+            <!--            <scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-utils</artifactId>
+            <version>2.0</version>
+        </dependency>
+    </dependencies>
+
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <artifactId>maven-shade-plugin</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <version>3.1.1</version>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <executions>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <phase>package</phase>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <goals>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <goal>shade</goal>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </goals>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </executions>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <createDependencyReducedPom>false</createDependencyReducedPom>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <artifactSet>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <excludes>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <exclude>commons-logging:commons-logging</exclude>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <exclude>javax.servlet:servlet-api</exclude>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <exclude>javax.mail:javax.mail-api</exclude>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </excludes>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </artifactSet>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+
+    <!--            <plugin>-->
+    <!--                <artifactId>maven-assembly-plugin</artifactId>-->
+    <!--                <configuration>-->
+    <!--                    <descriptorRefs>-->
+    <!--                        &lt;!&ndash; 将依赖也一起打包 &ndash;&gt;-->
+    <!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
+    <!--                    </descriptorRefs>-->
+    <!--                    <archive>-->
+    <!--                        <manifest>-->
+    <!--                            &lt;!&ndash; 可以在这里指定运行的主类，这样在打包为jar包后就可以不用指定需要运行的类 &ndash;&gt;-->
+    <!--                            <mainClass>-->
+    <!--                                com.bmts.heating.storm.WorldCountTopology-->
+    <!--                            </mainClass>-->
+    <!--                        </manifest>-->
+    <!--                    </archive>-->
+    <!--                </configuration>-->
+    <!--                <executions>-->
+    <!--                    <execution>-->
+    <!--                        <id>make-assembly</id>-->
+    <!--                        <phase>package</phase>-->
+    <!--                        <goals>-->
+    <!--                            <goal>single</goal>-->
+    <!--                        </goals>-->
+    <!--                    </execution>-->
+    <!--                </executions>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
+</project>

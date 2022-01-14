@@ -1,0 +1,6 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: server1:9200,server2:9200,server3:9200
+#      uris: 100.1.2.24:9200,100.1.2.25:9200,100.1.2.26:9200
+      read-timeout: 30s #默认为30s

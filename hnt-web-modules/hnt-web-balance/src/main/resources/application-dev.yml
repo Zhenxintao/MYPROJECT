@@ -1,0 +1,10 @@
+spring:
+  application:
+    id: 6234512313
+  profiles: dev
+micro:
+  server:
+    host: balance
+    port: 7088
+    name: balance
+    tokens: 50

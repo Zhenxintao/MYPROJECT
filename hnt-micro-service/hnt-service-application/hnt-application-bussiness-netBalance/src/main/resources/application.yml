@@ -1,0 +1,11 @@
+server:
+  port: 8182
+spring:
+  application:
+    name: application_netbalance
+
+  profiles:
+    active: ${package.environment}
+netbalance:
+  arithmeticUrl: http://netbalance:10080
+

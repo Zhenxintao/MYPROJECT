@@ -1,0 +1,14 @@
+server:
+  port: 6902
+spring:
+  profiles:
+    active: ${package.environment}
+  application:
+    name: application_auth
+
+  activemq:
+    broker-url: tcp://activemq:61616
+    #    broker-url: tcp://10.0.31.32:61616
+    topic-name: tscc.sso.user.add,tscc.sso.user.delete,tscc.sso.user.update
+  jms:
+    pub-sub-domain: true

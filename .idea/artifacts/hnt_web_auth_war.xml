@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-web-auth:war">
+    <output-path>$PROJECT_DIR$/hnt-web-modules/hnt-web-auth/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-web-auth</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="auth.war">
+      <element id="artifact" artifact-name="hnt-web-auth:war exploded" />
+    </root>
+  </artifact>
+</component>

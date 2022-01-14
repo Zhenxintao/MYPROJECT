@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-web-energy:war">
+    <output-path>$PROJECT_DIR$/hnt-web-modules/hnt-web-energy/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-web-energy</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="energy.war">
+      <element id="artifact" artifact-name="hnt-web-energy:war exploded" />
+    </root>
+  </artifact>
+</component>

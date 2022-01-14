@@ -1,0 +1,12 @@
+spring:
+  application:
+    id: 623451123
+  profiles: prod
+
+micro:
+  server:
+    host: scada
+    port: 7171
+    name: scada
+    tokens: 50
+

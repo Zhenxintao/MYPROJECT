@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option java_package = "com.bmts.heating.commons.grpc.lib.services.elasticsearch";
+
+service Elasticsearch {
+    rpc findByHeatSystem (HistoryRequest) returns (stream HistoryResponse) {
+    }
+    rpc bucket(BucketRequest) returns (stream HistoryResponse){
+    }
+}
+//采集数据查询体
+message BucketRequest{
+    repeated TimeRange timeRange = 1;
+    repeated int32 heatSystemId = 2;//系统id
+    HistoryDocument doc = 3;
+    HistorySourceType type = 4;
+    repeated string includeFields = 5;//包含列
+    repeated string excludeFields = 6;//剔除列
+    int32 index = 7; //是否根据systemId分组
+}
+//参加聚合时间区间
+message TimeRange{
+    int64 start = 1;//开始时间
+    int64 end = 2;//结束时间
+    string index = 3;//标识
+}
+//实时聚合入参
+message HistoryRequest{
+    int64 start = 1;//开始时间
+    int64 end = 2;//结束时间
+    repeated int32 heatSystemId = 3;//系统id
+
+    HistoryDocument doc = 4;
+    HistorySourceType type = 5;
+    int32 currentPage = 6;//当前页
+    int32 size = 7;//页面条数
+    string field = 8;//排序字段
+    bool sortType = 9;//排序方式
+
+    repeated string includeFields = 10;//包含列
+    repeated string excludeFields = 11;//剔除列
+}
+//响应体
+message HistoryResponse{
+    string result = 1;
+}
+
+//索引枚举
+enum HistoryDocument {
+    REAL_DATA = 0;
+    HOUR_AVG = 1;
+    DAY = 2;
+    HOUR = 3;
+} //访问数据类型 实时数据、小时平均数据、天数据
+//索引枚举
+enum HistorySourceType {
+    FIRST = 0;
+    SECOND = 1;
+    INDOOR_TEMP = 2;
+    ENERGY_CONVERGE = 3;
+}

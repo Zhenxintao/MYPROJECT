@@ -1,0 +1,47 @@
+colony:
+  kafka:
+    knodes:
+      - kcolony_id: kc_master    #集群id
+        open: true
+        kcolony_ips:
+          - server1:9092
+          - server2:9092
+          - server3:9092    #集群ip
+        datasets:
+          - fen1001     #设备编号
+          - fen1002
+      - kcolony_id: kc_slave001    #集群id
+        open: false
+        kcolony_ips:
+          - server3:9092    #集群ip
+        datasets:
+          - fen1003   #设备编号
+          - fen1004
+  redis:
+    clusters:
+      - rcolony_id: rd_master
+        open: true
+        rcolony_ips:
+          - server1:6379
+          - server1:6380
+          - server2:6379
+          - server2:6380
+          - server3:6379
+          - server3:6380
+        datasets:
+          - fen1001
+          - fen1002
+      - rcolony_id: rd_slave001
+        open: false
+        rcolony_ips:
+          - server1:6379
+          - server1:6380
+          - server2:6379
+          - server2:6380
+          - server3:6379
+          - server3:6380
+        datasets:
+          - fen1003
+          - fen1004
+
+

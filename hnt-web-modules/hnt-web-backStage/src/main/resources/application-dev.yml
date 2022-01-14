@@ -1,0 +1,12 @@
+spring:
+  application:
+    id: 623451
+  profiles: dev
+
+micro:
+  server:
+    host: backStage
+    port: 7071
+    name: backStage
+    tokens: 50
+

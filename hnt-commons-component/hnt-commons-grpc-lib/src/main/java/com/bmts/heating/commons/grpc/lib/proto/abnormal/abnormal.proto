@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.abnormal";
+service Abnormal{
+  rpc insert(abnormal) returns (BoolResult){}
+}
+message abnormal{
+  int64 ts = 1;
+  int32 groupid = 2;
+  int32 level = 3;
+  int32 type = 4;
+  string value = 5;
+  string msg = 6;
+  string point = 7;
+}

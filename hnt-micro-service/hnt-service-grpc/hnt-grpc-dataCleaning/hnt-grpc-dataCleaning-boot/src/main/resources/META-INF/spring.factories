@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.bmts.heating.colony.config.InitColony,\
+  com.bmts.heating.grpc.dataCleaning.config.DataTopicConfig

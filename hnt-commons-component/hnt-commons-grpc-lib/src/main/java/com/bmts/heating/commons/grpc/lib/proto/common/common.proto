@@ -1,0 +1,6 @@
+syntax = "proto3";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.common";
+
+message BoolResult{
+  bool isOk = 1;
+}

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-web-scada:war">
+    <output-path>$PROJECT_DIR$/hnt-web-modules/hnt-web-scada/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-web-scada</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="scada.war">
+      <element id="artifact" artifact-name="hnt-web-scada:war exploded" />
+    </root>
+  </artifact>
+</component>

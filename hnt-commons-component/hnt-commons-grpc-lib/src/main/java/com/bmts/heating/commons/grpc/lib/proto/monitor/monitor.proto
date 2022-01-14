@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.Monitor";
+
+service Monitor {
+    rpc getMonitorData ( RectangleM) returns (stream  MonitorL) {}
+}
+
+message RectangleM {
+    int32 pid = 1;
+}
+message MonitorL {
+    int32 mloop = 1;
+}

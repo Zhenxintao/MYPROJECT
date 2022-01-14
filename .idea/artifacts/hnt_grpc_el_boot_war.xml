@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-grpc-el-boot:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-grpc/hnt-grpc-el/hnt-grpc-el-boot/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-grpc-el-boot</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="el.war">
+      <element id="artifact" artifact-name="hnt-grpc-el-boot:war exploded" />
+    </root>
+  </artifact>
+</component>

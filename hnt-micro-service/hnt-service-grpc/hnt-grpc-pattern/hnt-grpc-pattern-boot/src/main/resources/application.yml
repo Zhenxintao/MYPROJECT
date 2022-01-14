@@ -1,0 +1,23 @@
+server:
+  port: 3390
+spring:
+  application:
+    name: pattern-server-one
+    id: 5872935
+micro:
+  server:
+    host: 10.0.16.100
+    port: 7652
+    name: pattern_1
+    tokens: 10000
+  pool:
+    maxTotal: 30  #池中的最大连接数
+    minIdle: 0    #最少的空闲连接数
+    maxIdle: 50    #最多的空闲连接数
+    maxWaitMillis: 1    #当连接池资源耗尽时,调用者最大阻塞的时间,超时时抛出异常 单位:毫秒数
+    lifo: true    #连接池存放池化对象方式,true放在空闲队列最前面,false放在空闲队列最后
+    blockWhenExhausted: true  #连接耗尽时是否阻塞,默认为true
+grpc:
+  server:
+    host: 10.0.16.100
+    port: 7652

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Heating-Net-Platform</artifactId>
+        <groupId>com.bmts.heating</groupId>
+        <version>2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>hnt-web-backStage</module>
+        <module>hnt-web-scada</module>
+        <module>hnt-web-auth</module>
+        <module>hnt-web-balance</module>
+        <!--        <module>hnt-web-netApp</module>-->
+        <module>hnt-web-config</module>
+        <module>hnt-web-energy</module>
+        <module>hnt-web-forecast</module>
+        <module>hnt-web-common</module>
+    </modules>
+    <artifactId>hnt-web-modules</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-container</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-utils</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!--    移除嵌入式tomcat插件(打包部署到tomcat时需要打开注释)-->
+<!--                        <exclusions>-->
+<!--                            <exclusion>-->
+<!--                                <groupId>org.springframework.boot</groupId>-->
+<!--                                <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                            </exclusion>-->
+<!--                        </exclusions>-->
+        </dependency>
+    </dependencies>
+</project>

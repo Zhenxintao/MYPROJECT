@@ -1,0 +1,621 @@
+2022-01-06 12:01:13.736 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - Starting BaseInfoApplication on DESKTOP-MAGQN00 with PID 25564 (M:\Code\Company_Project\JinCheng_platform\hnt-micro-service\hnt-service-application\hnt-application-bussiness-baseInformation\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2022-01-06 12:01:13.739 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - The following profiles are active: dev
+2022-01-06 12:01:15.367 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 12:01:15.377 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2022-01-06 12:01:15.394 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12ms. Found 0 Elasticsearch repository interfaces.
+2022-01-06 12:01:15.398 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 12:01:15.399 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2022-01-06 12:01:15.401 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1ms. Found 0 Reactive Elasticsearch repository interfaces.
+2022-01-06 12:01:15.411 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 12:01:15.412 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-06 12:01:15.420 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 Redis repository interfaces.
+2022-01-06 12:01:16.391 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 4590 (http)
+2022-01-06 12:01:16.402 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-4590"]
+2022-01-06 12:01:16.403 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-01-06 12:01:16.403 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2022-01-06 12:01:16.532 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-01-06 12:01:16.532 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2747 ms
+2022-01-06 12:01:16.779 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 12:01:18.275 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.SourceFirstNetBaseView.
+2022-01-06 12:01:18.671 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WebPageConfig.
+2022-01-06 12:01:19.157 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 12:01:19.157 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 12:01:19.157 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 12:01:19.157 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 12:01:19.254 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Spring Data Elasticsearch: 4.0.0.RELEASE
+2022-01-06 12:01:19.254 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client in build: 7.6.2
+2022-01-06 12:01:19.254 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client used: 7.6.2
+2022-01-06 12:01:19.254 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch cluster: 7.7.0
+2022-01-06 12:01:19.254 [main] WARN  org.springframework.data.elasticsearch.support.VersionInfo - Version mismatch in between Elasticsearch Client and Cluster: 7.6.2 - 7.7.0
+2022-01-06 12:01:19.292 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherHour.
+2022-01-06 12:01:19.329 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherDay.
+2022-01-06 12:01:19.699 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.StationFirstNetBaseView.
+2022-01-06 12:01:19.998 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'copySourceJoggle': Unsatisfied dependency expressed through field 'redisCacheService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+2022-01-06 12:01:20.007 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService
+2022-01-06 12:01:20.016 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-01-06 12:01:20.034 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-01-06 12:01:20.047 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'copySourceJoggle': Unsatisfied dependency expressed through field 'redisCacheService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication.main(BaseInfoApplication.java:29)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1306)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1226)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1286)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1201)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1306)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1226)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	... 33 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267)
+	... 45 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/bmts/heating/distribution/config/ResponseForCenter
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3166)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2309)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463)
+	... 47 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.bmts.heating.distribution.config.ResponseForCenter
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 51 common frames omitted
+2022-01-06 12:01:20.051 [main] WARN  org.springframework.boot.SpringApplication - Unable to close ApplicationContext
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springApplicationAdminRegistrar' defined in class path resource [org/springframework/boot/autoconfigure/admin/SpringApplicationAdminJmxAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.event.AbstractApplicationEventMulticaster.retrieveApplicationListeners(AbstractApplicationEventMulticaster.java:245)
+	at org.springframework.context.event.AbstractApplicationEventMulticaster.getApplicationListeners(AbstractApplicationEventMulticaster.java:197)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:134)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:403)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:360)
+	at org.springframework.boot.availability.AvailabilityChangeEvent.publish(AvailabilityChangeEvent.java:81)
+	at org.springframework.boot.availability.AvailabilityChangeEvent.publish(AvailabilityChangeEvent.java:67)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:167)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:978)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:814)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication.main(BaseInfoApplication.java:29)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.aop.framework.autoproxy.BeanFactoryAdvisorRetrievalHelper.findAdvisorBeans(BeanFactoryAdvisorRetrievalHelper.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findCandidateAdvisors(AbstractAdvisorAutoProxyCreator.java:109)
+	at org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator.findCandidateAdvisors(AnnotationAwareAspectJAutoProxyCreator.java:92)
+	at org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator.shouldSkip(AspectJAwareAdvisorAutoProxyCreator.java:101)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessBeforeInstantiation(AbstractAutoProxyCreator.java:251)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1141)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1114)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:506)
+	... 18 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:814)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1282)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:297)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor.postProcessBeforeInitialization(ConfigurationClassPostProcessor.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	... 40 common frames omitted
+2022-01-06 13:22:52.545 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - Starting BaseInfoApplication on DESKTOP-MAGQN00 with PID 12888 (M:\Code\Company_Project\JinCheng_platform\hnt-micro-service\hnt-service-application\hnt-application-bussiness-baseInformation\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2022-01-06 13:22:52.548 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - The following profiles are active: dev
+2022-01-06 13:22:54.267 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:22:54.269 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2022-01-06 13:22:54.287 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Elasticsearch repository interfaces.
+2022-01-06 13:22:54.291 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:22:54.291 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2022-01-06 13:22:54.293 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 Reactive Elasticsearch repository interfaces.
+2022-01-06 13:22:54.305 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:22:54.306 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-06 13:22:54.314 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 Redis repository interfaces.
+2022-01-06 13:23:04.164 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 4590 (http)
+2022-01-06 13:23:04.342 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-4590"]
+2022-01-06 13:23:04.343 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-01-06 13:23:04.344 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2022-01-06 13:23:05.974 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-01-06 13:23:05.974 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 13381 ms
+2022-01-06 13:23:09.353 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:23:26.922 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.SourceFirstNetBaseView.
+2022-01-06 13:23:38.621 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WebPageConfig.
+2022-01-06 13:23:39.117 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:23:39.117 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:23:39.117 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:23:39.118 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:23:39.212 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Spring Data Elasticsearch: 4.0.0.RELEASE
+2022-01-06 13:23:39.212 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client in build: 7.6.2
+2022-01-06 13:23:39.212 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client used: 7.6.2
+2022-01-06 13:23:39.212 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch cluster: 7.7.0
+2022-01-06 13:23:39.212 [main] WARN  org.springframework.data.elasticsearch.support.VersionInfo - Version mismatch in between Elasticsearch Client and Cluster: 7.6.2 - 7.7.0
+2022-01-06 13:23:39.253 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherHour.
+2022-01-06 13:23:39.296 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherDay.
+2022-01-06 13:23:39.686 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.StationFirstNetBaseView.
+2022-01-06 13:23:39.974 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'copySourceJoggle': Unsatisfied dependency expressed through field 'redisCacheService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+2022-01-06 13:23:40.040 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService
+2022-01-06 13:23:40.050 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-01-06 13:23:40.064 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-01-06 13:23:40.076 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'copySourceJoggle': Unsatisfied dependency expressed through field 'redisCacheService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication.main(BaseInfoApplication.java:29)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'redisCacheService': Unsatisfied dependency expressed through field 'grpcClientPool'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1306)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1226)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'grpcClientPool': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1286)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1201)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1306)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1226)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	... 33 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.bmts.heating.commons.container.performance.config.GrpcClientPool] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@61064425]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267)
+	... 45 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/bmts/heating/distribution/config/ResponseForCenter
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3166)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2309)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463)
+	... 47 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.bmts.heating.distribution.config.ResponseForCenter
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 51 common frames omitted
+2022-01-06 13:23:40.081 [main] WARN  org.springframework.boot.SpringApplication - Unable to close ApplicationContext
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springApplicationAdminRegistrar' defined in class path resource [org/springframework/boot/autoconfigure/admin/SpringApplicationAdminJmxAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:512)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.event.AbstractApplicationEventMulticaster.retrieveApplicationListeners(AbstractApplicationEventMulticaster.java:245)
+	at org.springframework.context.event.AbstractApplicationEventMulticaster.getApplicationListeners(AbstractApplicationEventMulticaster.java:197)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:134)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:403)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:360)
+	at org.springframework.boot.availability.AvailabilityChangeEvent.publish(AvailabilityChangeEvent.java:81)
+	at org.springframework.boot.availability.AvailabilityChangeEvent.publish(AvailabilityChangeEvent.java:67)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:167)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:978)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:814)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication.main(BaseInfoApplication.java:29)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.aop.framework.autoproxy.BeanFactoryAdvisorRetrievalHelper.findAdvisorBeans(BeanFactoryAdvisorRetrievalHelper.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findCandidateAdvisors(AbstractAdvisorAutoProxyCreator.java:109)
+	at org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator.findCandidateAdvisors(AnnotationAwareAspectJAutoProxyCreator.java:92)
+	at org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator.shouldSkip(AspectJAwareAdvisorAutoProxyCreator.java:101)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessBeforeInstantiation(AbstractAutoProxyCreator.java:251)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1141)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1114)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:506)
+	... 18 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:814)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1282)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:297)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor.postProcessBeforeInitialization(ConfigurationClassPostProcessor.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
+	... 40 common frames omitted
+2022-01-06 13:27:58.640 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - Starting BaseInfoApplication on DESKTOP-MAGQN00 with PID 17952 (M:\Code\Company_Project\JinCheng_platform\hnt-micro-service\hnt-service-application\hnt-application-bussiness-baseInformation\target\classes started by 君莫笑 in M:\Code\Company_Project\JinCheng_platform)
+2022-01-06 13:27:58.643 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - The following profiles are active: dev
+2022-01-06 13:28:00.262 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:28:00.263 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Elasticsearch repositories in DEFAULT mode.
+2022-01-06 13:28:00.289 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Elasticsearch repository interfaces.
+2022-01-06 13:28:00.293 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:28:00.294 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Reactive Elasticsearch repositories in DEFAULT mode.
+2022-01-06 13:28:00.296 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 Reactive Elasticsearch repository interfaces.
+2022-01-06 13:28:00.308 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-06 13:28:00.310 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-06 13:28:00.318 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2ms. Found 0 Redis repository interfaces.
+2022-01-06 13:28:01.251 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 4590 (http)
+2022-01-06 13:28:01.263 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-4590"]
+2022-01-06 13:28:01.264 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-01-06 13:28:01.264 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2022-01-06 13:28:01.390 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-01-06 13:28:01.390 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2697 ms
+2022-01-06 13:28:01.632 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:03.082 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.SourceFirstNetBaseView.
+2022-01-06 13:28:03.472 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WebPageConfig.
+2022-01-06 13:28:03.927 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:28:03.927 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:28:03.927 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:28:03.927 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-06 13:28:04.021 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Spring Data Elasticsearch: 4.0.0.RELEASE
+2022-01-06 13:28:04.021 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client in build: 7.6.2
+2022-01-06 13:28:04.021 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch Client used: 7.6.2
+2022-01-06 13:28:04.021 [main] INFO  org.springframework.data.elasticsearch.support.VersionInfo - Version Elasticsearch cluster: 7.7.0
+2022-01-06 13:28:04.021 [main] WARN  org.springframework.data.elasticsearch.support.VersionInfo - Version mismatch in between Elasticsearch Client and Cluster: 7.6.2 - 7.7.0
+2022-01-06 13:28:04.061 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherHour.
+2022-01-06 13:28:04.098 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.WeatherDay.
+2022-01-06 13:28:04.462 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.StationFirstNetBaseView.
+2022-01-06 13:28:05.150 [main] WARN  com.baomidou.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.bmts.heating.commons.basement.model.db.entity.PointCollectStandardType.
+2022-01-06 13:28:07.384 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-01-06 13:28:07.393 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-01-06 13:28:07.393 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-01-06 13:28:07.394 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+2022-01-06 13:28:07.394 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2022-01-06 13:28:07.394 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+2022-01-06 13:28:07.394 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-01-06 13:28:07.395 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.bmts.heating.commons.container.quartz.config.QuartzJobFactory@216c6825
+2022-01-06 13:28:07.476 [main] INFO  com.bmts.heating.distribution.modle.ConsulModel - 检测consuld集群网络状态.............
+2022-01-06 13:28:07.996 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.config.ExecutorConfig - start asyncEnergyExecutor
+2022-01-06 13:28:07.996 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:07.997 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'asyncEnergyExecutor'
+2022-01-06 13:28:08.001 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.config.ExecutorConfig - start asyncUrlConnExecutor
+2022-01-06 13:28:08.001 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:08.001 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'asyncUrlConnExecutor'
+2022-01-06 13:28:08.008 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'getPointCacheTask'
+2022-01-06 13:28:08.086 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-01-06 13:28:08.104 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:08.104 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'async-token'
+2022-01-06 13:28:08.184 [main] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [server1:9092, server2:9092, server3:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.2
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-01-06 13:28:08.226 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.5.0
+2022-01-06 13:28:08.226 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 66563e712b0b9f84
+2022-01-06 13:28:08.226 [main] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1641446888224
+2022-01-06 13:28:08.249 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaConsumerExecutorConfig - start asyncKafkaConsumerExecutor.........
+2022-01-06 13:28:08.249 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:08.249 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-consumer'
+2022-01-06 13:28:08.251 [main] INFO  com.bmts.heating.commons.mq.kafka.config.KafkaProduceExecutorConfig - start asyncKafkaProduceExecutor.........
+2022-01-06 13:28:08.251 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-01-06 13:28:08.252 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'kafka-produce'
+2022-01-06 13:28:08.748 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-01-06 13:28:08.862 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-4590"]
+2022-01-06 13:28:08.881 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 4590 (http) with context path ''
+2022-01-06 13:28:08.882 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-01-06 13:28:08.906 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-01-06 13:28:08.969 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-01-06 13:28:09.299 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+2022-01-06 13:28:09.301 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_1
+2022-01-06 13:28:09.304 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_1
+2022-01-06 13:28:09.307 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_1
+2022-01-06 13:28:09.309 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+2022-01-06 13:28:09.311 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_2
+2022-01-06 13:28:09.313 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_2
+2022-01-06 13:28:09.314 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_2
+2022-01-06 13:28:09.315 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2022-01-06 13:28:09.331 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: copyNewUsingPOST_1
+2022-01-06 13:28:09.331 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: querySourceUsingGET_1
+2022-01-06 13:28:09.332 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: toExistUsingPOST_1
+2022-01-06 13:28:09.345 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+2022-01-06 13:28:09.346 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_1
+2022-01-06 13:28:09.347 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_2
+2022-01-06 13:28:09.348 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+2022-01-06 13:28:09.348 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_3
+2022-01-06 13:28:09.350 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_3
+2022-01-06 13:28:09.350 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_2
+2022-01-06 13:28:09.351 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_3
+2022-01-06 13:28:09.352 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+2022-01-06 13:28:09.353 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_4
+2022-01-06 13:28:09.355 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_4
+2022-01-06 13:28:09.357 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_3
+2022-01-06 13:28:09.358 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_4
+2022-01-06 13:28:09.360 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+2022-01-06 13:28:09.368 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+2022-01-06 13:28:09.391 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_5
+2022-01-06 13:28:09.393 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_1
+2022-01-06 13:28:09.393 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+2022-01-06 13:28:09.394 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_1
+2022-01-06 13:28:09.400 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_2
+2022-01-06 13:28:09.403 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: saveOrUpdateUsingPUT_1
+2022-01-06 13:28:09.404 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+2022-01-06 13:28:09.406 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_3
+2022-01-06 13:28:09.408 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: saveOrUpdateUsingPUT_2
+2022-01-06 13:28:09.409 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+2022-01-06 13:28:09.410 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_4
+2022-01-06 13:28:09.412 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: saveOrUpdateUsingPUT_3
+2022-01-06 13:28:09.412 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+2022-01-06 13:28:09.413 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_5
+2022-01-06 13:28:09.415 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: saveOrUpdateUsingPUT_4
+2022-01-06 13:28:09.416 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: infoUsingGET_1
+2022-01-06 13:28:09.417 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: saveOrUpdateUsingPUT_5
+2022-01-06 13:28:09.426 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_5
+2022-01-06 13:28:09.428 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_6
+2022-01-06 13:28:09.429 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_6
+2022-01-06 13:28:09.431 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_11
+2022-01-06 13:28:09.431 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_6
+2022-01-06 13:28:09.435 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_5
+2022-01-06 13:28:09.435 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_4
+2022-01-06 13:28:09.438 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_7
+2022-01-06 13:28:09.439 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_12
+2022-01-06 13:28:09.442 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_6
+2022-01-06 13:28:09.443 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_7
+2022-01-06 13:28:09.445 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_8
+2022-01-06 13:28:09.446 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_13
+2022-01-06 13:28:09.446 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_7
+2022-01-06 13:28:09.449 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_7
+2022-01-06 13:28:09.451 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_5
+2022-01-06 13:28:09.451 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_9
+2022-01-06 13:28:09.458 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_14
+2022-01-06 13:28:09.460 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_8
+2022-01-06 13:28:09.462 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_6
+2022-01-06 13:28:09.463 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_3
+2022-01-06 13:28:09.465 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryTreeUsingPOST_1
+2022-01-06 13:28:09.466 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_10
+2022-01-06 13:28:09.467 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_15
+2022-01-06 13:28:09.468 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_8
+2022-01-06 13:28:09.472 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_9
+2022-01-06 13:28:09.473 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_7
+2022-01-06 13:28:09.474 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_11
+2022-01-06 13:28:09.474 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_16
+2022-01-06 13:28:09.475 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_9
+2022-01-06 13:28:09.479 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_10
+2022-01-06 13:28:09.481 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_8
+2022-01-06 13:28:09.482 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_12
+2022-01-06 13:28:09.489 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_17
+2022-01-06 13:28:09.490 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: infoUsingGET_2
+2022-01-06 13:28:09.493 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_9
+2022-01-06 13:28:09.498 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_10
+2022-01-06 13:28:09.507 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: addBatchUsingPOST_1
+2022-01-06 13:28:09.509 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingPOST_1
+2022-01-06 13:28:09.517 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_8
+2022-01-06 13:28:09.518 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryByIdUsingGET_1
+2022-01-06 13:28:09.521 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_13
+2022-01-06 13:28:09.522 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_18
+2022-01-06 13:28:09.523 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_10
+2022-01-06 13:28:09.525 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_11
+2022-01-06 13:28:09.525 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryByMapUsingPOST_1
+2022-01-06 13:28:09.526 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_14
+2022-01-06 13:28:09.529 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_11
+2022-01-06 13:28:09.529 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: removePointAlarmUsingPOST_1
+2022-01-06 13:28:09.531 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: setPointAlarmUsingPOST_1
+2022-01-06 13:28:09.534 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updatePointAlarmUsingPUT_1
+2022-01-06 13:28:09.537 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_19
+2022-01-06 13:28:09.537 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_11
+2022-01-06 13:28:09.547 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_12
+2022-01-06 13:28:09.548 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_12
+2022-01-06 13:28:09.550 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_15
+2022-01-06 13:28:09.551 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_20
+2022-01-06 13:28:09.552 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_12
+2022-01-06 13:28:09.552 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: freezeUsingPOST_1
+2022-01-06 13:28:09.554 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_13
+2022-01-06 13:28:09.556 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_13
+2022-01-06 13:28:09.556 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_16
+2022-01-06 13:28:09.557 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_21
+2022-01-06 13:28:09.557 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_13
+2022-01-06 13:28:09.559 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_14
+2022-01-06 13:28:09.560 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryByMapUsingPOST_2
+2022-01-06 13:28:09.561 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_17
+2022-01-06 13:28:09.566 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_9
+2022-01-06 13:28:09.568 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_15
+2022-01-06 13:28:09.571 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryTypeUsingGET_1
+2022-01-06 13:28:09.588 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_22
+2022-01-06 13:28:09.589 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: deletePointStandardUsingPOST_1
+2022-01-06 13:28:09.590 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: infoUsingGET_3
+2022-01-06 13:28:09.591 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: loadOtherPointStandardSearchUsingPOST_1
+2022-01-06 13:28:09.593 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: pageUsingPOST_10
+2022-01-06 13:28:09.595 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_18
+2022-01-06 13:28:09.602 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryPointByTypeUsingGET_1
+2022-01-06 13:28:09.608 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: queryDetailUsingGET_1
+2022-01-06 13:28:09.625 [main] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2022-01-06 13:28:09.625 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2022-01-06 13:28:09.637 [main] INFO  com.bmts.heating.commons.container.performance.config.GrpcClientPool - 初始化grpc_channel信道池
+2022-01-06 13:28:09.680 [main] WARN  com.bmts.heating.commons.container.performance.config.GrpcClientPool - cache-grpc-server服务尚未启动............
+2022-01-06 13:28:09.683 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - 注册远程令牌的本地缓存...............
+2022-01-06 13:28:09.686 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:cache-grpc-server本地令牌缓存............. [0m
+2022-01-06 13:28:09.688 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {}->http://10.0.2.100:6748: The target server failed to respond
+2022-01-06 13:28:09.689 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {}->http://10.0.2.100:6748
+2022-01-06 13:28:09.693 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - ---------------------------------------------------------------fail
+2022-01-06 13:28:09.693 [main] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [33;33m远程服务未启动,暂时无法从远程获取服务令牌缓存到本地.............[0m
+2022-01-06 13:28:09.694 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:td本地令牌缓存............. [0m
+2022-01-06 13:28:09.696 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {}->http://10.0.2.100:6748: The target server failed to respond
+2022-01-06 13:28:09.696 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {}->http://10.0.2.100:6748
+2022-01-06 13:28:09.700 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - ---------------------------------------------------------------fail
+2022-01-06 13:28:09.700 [main] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [33;33m远程服务未启动,暂时无法从远程获取服务令牌缓存到本地.............[0m
+2022-01-06 13:28:09.701 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [1;34m 注册服务:td本地令牌缓存............. [0m
+2022-01-06 13:28:09.701 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {}->http://10.0.2.100:6748: The target server failed to respond
+2022-01-06 13:28:09.701 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {}->http://10.0.2.100:6748
+2022-01-06 13:28:09.705 [main] INFO  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - ---------------------------------------------------------------fail
+2022-01-06 13:28:09.705 [main] WARN  com.bmts.heating.commons.container.performance.handler.LocalTokenCache - [33;33m远程服务未启动,暂时无法从远程获取服务令牌缓存到本地.............[0m
+2022-01-06 13:28:09.710 [main] INFO  com.bmts.heating.bussiness.baseInformation.app.app.BaseInfoApplication - Started BaseInfoApplication in 11.494 seconds (JVM running for 13.23)
+2022-01-06 13:28:10.481 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.HeartServer - [31;4m 连接服务治理中心成功 [0m
+2022-01-06 13:28:10.521 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - registry application server success!
+2022-01-06 13:28:10.559 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":1,"server_code":0,"msg":"register success........","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:15.580 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:20.614 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:25.639 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:30.671 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:35.697 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:40.718 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:45.748 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:50.777 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:55.382 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2022-01-06 13:28:55.798 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-01-06 13:28:55.801 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-produce'
+2022-01-06 13:28:55.801 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'kafka-consumer'
+2022-01-06 13:28:55.802 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'async-token'
+2022-01-06 13:28:55.802 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'getPointCacheTask'
+2022-01-06 13:28:55.802 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncUrlConnExecutor'
+2022-01-06 13:28:55.802 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'asyncEnergyExecutor'
+2022-01-06 13:28:55.804 [SpringContextShutdownHook] INFO  org.springframework.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-01-06 13:28:55.804 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2022-01-06 13:28:55.804 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2022-01-06 13:28:55.805 [SpringContextShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.
+2022-01-06 13:28:55.814 [nioEventLoopGroup-4-1] INFO  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - {"systemType":0,"commond_code":3,"server_code":0,"msg":"server Response success......................... ","alivedServiceName":["application_pro:pro_1","bussiness_baseInfomation:baseInformation6"],"freeMemory":0.0,"totalMemory":0.0,"maxMemory":0.0}
+2022-01-06 13:28:55.819 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService
+2022-01-06 13:28:55.825 [nioEventLoopGroup-4-1] WARN  com.bmts.heating.commons.heartbeat.adapter.handler.application.HeartBeatApplicationClientHandler - [1;31m 与服务治理中心失去连接,尝试重新连接................. [0m

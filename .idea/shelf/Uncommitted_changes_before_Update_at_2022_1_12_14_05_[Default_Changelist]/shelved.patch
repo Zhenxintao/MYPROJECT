@@ -1,0 +1,709 @@
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/service/MongoService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.monitor.plugins.second.service;\r\n\r\nimport com.alibaba.fastjson.JSONObject;\r\nimport com.bmts.heating.commons.entiy.second.request.device.PointSecondDto;\r\nimport com.mongodb.client.result.UpdateResult;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.data.mongodb.core.MongoTemplate;\r\nimport org.springframework.data.mongodb.core.query.Criteria;\r\nimport org.springframework.data.mongodb.core.query.Query;\r\nimport org.springframework.data.mongodb.core.query.Update;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.Map;\r\n\r\n/**\r\n * @ClassName: MongoService\r\n * @Description: mongnDB 处理方法封装\r\n * @Author: pxf\r\n * @Date: 2022/1/6 14:27\r\n * @Version: 1.0\r\n */\r\n@Service\r\npublic class MongoService {\r\n\r\n    @Autowired\r\n    private MongoTemplate mongoTemplate;\r\n\r\n\r\n    public void updatSert(PointSecondDto dto) {\r\n        // 组装 查询的key\r\n        String key = \"devices.\" + dto.getLevel() + \".deviceCode\";\r\n        Query query = new Query();\r\n        query.addCriteria(Criteria.where(key).is(dto.getDeviceCode()));\r\n        // 更新数据\r\n        JSONObject jsonObj = new JSONObject();\r\n        // 设置参数\r\n        Update update = new Update();\r\n        update.set(\"devices.\" + dto.getLevel() + \".realdata.timeStamp\", dto.getTimestamp());\r\n        // points  Map 的key 为点名称，map 为点对应的各种信息\r\n        Map<String, Map<String, String>> points = dto.getPoints();\r\n        points.forEach((k, v) -> {\r\n            JSONObject pointDetail = new JSONObject();\r\n            v.forEach((x, y) -> {\r\n                pointDetail.put(x, y);\r\n            });\r\n            update.set(\"devices.\" + dto.getLevel() + \".realdata.timeStamp\", dto.getTimestamp());\r\n            // jsonObj.put(k, pointDetail);\r\n        });\r\n\r\n\r\n        UpdateResult state = mongoTemplate.upsert(query, update, dto.getTableName());\r\n    }\r\n\r\n    // public void updatSert(PointSecondDto dto) {\r\n    //        // 组装 查询的key\r\n    //        String key = \"devices.\" + dto.getLevel() + \".deviceCode\";\r\n    //        Query query = new Query();\r\n    //        query.addCriteria(Criteria.where(key).is(dto.getDeviceCode()));\r\n    //        // 更新数据\r\n    //        JSONObject jsonObj = new JSONObject();\r\n    //        // 设置参数\r\n    //        Update update = new Update();\r\n    //        update.set(\"devices.\" + dto.getLevel() + \".realdata.timeStamp\", dto.getTimestamp());\r\n    //\r\n    //        jsonObj.put(\"timeStamp\", dto.getTimestamp());\r\n    //        // points  Map 的key 为点名称，map 为点对应的各种信息\r\n    //        Map<String, Map<String, String>> points = dto.getPoints();\r\n    //        points.forEach((k, v) -> {\r\n    //            JSONObject pointDetail = new JSONObject();\r\n    //            v.forEach((x, y) -> {\r\n    //                pointDetail.put(x, y);\r\n    //            });\r\n    //            jsonObj.put(k, pointDetail);\r\n    //        });\r\n    //\r\n    //\r\n    //        UpdateResult state = mongoTemplate.upsert(query, update, dto.getTableName());\r\n    //    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/service/MongoService.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/service/MongoService.java	(date 1641959266633)
+@@ -1,7 +1,17 @@
+ package com.bmts.heating.monitor.plugins.second.service;
+ 
++import com.alibaba.fastjson.JSON;
+ import com.alibaba.fastjson.JSONObject;
++import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.PointInfo;
++import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.SecondNetDataMinuteDto;
++import com.bmts.heating.middleware.td.HistoryTdGrpcClient;
++import lombok.extern.slf4j.Slf4j;
++import net.sf.json.*;
++import com.alibaba.fastjson.serializer.SerializerFeature;
++import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.InsertHistoryMinuteDto;
+ import com.bmts.heating.commons.entiy.second.request.device.PointSecondDto;
++import com.bmts.heating.monitor.plugins.second.pojo.CommunityQueryDto;
++import com.bmts.heating.monitor.plugins.second.pojo.MongoInserDto;
+ import com.mongodb.client.result.UpdateResult;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.data.mongodb.core.MongoTemplate;
+@@ -9,8 +19,9 @@
+ import org.springframework.data.mongodb.core.query.Query;
+ import org.springframework.data.mongodb.core.query.Update;
+ import org.springframework.stereotype.Service;
++import springfox.documentation.spring.web.json.Json;
+ 
+-import java.util.Map;
++import java.util.*;
+ 
+ /**
+  * @ClassName: MongoService
+@@ -19,12 +30,14 @@
+  * @Date: 2022/1/6 14:27
+  * @Version: 1.0
+  */
++@Slf4j
+ @Service
+ public class MongoService {
+ 
+     @Autowired
+     private MongoTemplate mongoTemplate;
+-
++    @Autowired
++    private HistoryTdGrpcClient historyTdGrpcClient;
+ 
+     public void updatSert(PointSecondDto dto) {
+         // 组装 查询的key
+@@ -77,4 +90,71 @@
+     //        UpdateResult state = mongoTemplate.upsert(query, update, dto.getTableName());
+     //    }
+ 
++    //二网插入历史分钟数据
++    public Boolean insertTdHistory() {
++        //定义历史数据插入Dto实现类
++        List<SecondNetDataMinuteDto> historyMinuteDtoList = new ArrayList<>();
++        try {
++            //查询MongoDB实时数据
++            List<CommunityQueryDto> allRealData = mongoTemplate.findAll(CommunityQueryDto.class, "floor");
++            if (allRealData.size() <= 0) {
++                return false;
++            }
++            for (CommunityQueryDto dto : allRealData) {
++                //获取Community实时数据表中devices数据信息
++                Map<String, Map> map = dto.getDevices();
++                for (String key : map.keySet()) {
++                    SecondNetDataMinuteDto minuteDto = new SecondNetDataMinuteDto();
++                    Integer level = (Integer) map.get(key).get("level");
++                    String deviceCode = map.get(key).get("deviceCode").toString();
++                    if (deviceCode == null || deviceCode.length() == 0) {
++                        continue;
++                    }
++//                    if (level == null || level <= 0) {
++//                        continue;
++//                    }
++                    //插入历史点位信息数据
++                    List<PointInfo> pointInfos = new ArrayList<>();
++                    Map<String, Object> realDataMap = (Map) map.get(key).get("realData");
++                    if (realDataMap != null) {
++                        String timeStamp = realDataMap.get("timeStamp").toString();
++                        minuteDto.setTs((Long.valueOf(timeStamp)));
++                        realDataMap.remove("timeStamp");
++                        for (String realDataKey : realDataMap.keySet()) {
++                            PointInfo pointInfo = new PointInfo();
++                            pointInfo.setPointName(realDataKey);
++                            JSONObject dataMap = (JSONObject) JSONObject.toJSON(realDataMap.get(realDataKey));
++                            pointInfo.setValue(dataMap.get("value").toString());
++                            pointInfos.add(pointInfo);
++                        }
++                    } else {
++                        continue;
++                    }
++                    //组装历史数据响应体
++                    Integer treeId = (Integer) map.get(key).get("treeId");
++                    List<PointInfo> tags = new ArrayList<>();
++                    PointInfo deviceCodePoint = new PointInfo() {{
++                        setPointName("deviceCode");
++                        setValue(deviceCode);
++                    }};
++                    PointInfo levelPoint = new PointInfo() {{
++                        setPointName("treeId");
++                        setValue(treeId.toString());
++                    }};
++                    tags.add(deviceCodePoint);
++                    tags.add(levelPoint);
++                    minuteDto.setTags(tags);
++                    minuteDto.setPoints(pointInfos);
++                    minuteDto.setTableName(key + "_meta_" + deviceCode + "_" + level);
++                    minuteDto.setStableName(key + "_meta");
++                    historyMinuteDtoList.add(minuteDto);
++                }
++            }
++            //调用历史服务客户端，插入历史分钟数据。
++            return historyTdGrpcClient.insertSecondHistoryMinuteToTd(historyMinuteDtoList);
++        } catch (Exception e) {
++            log.error("二网分数历史数据插入失败！……………………{}", e);
++            return false;
++        }
++    }
+ }
+Index: hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/HistoryTdGrpcClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.middleware.td;\r\n\r\nimport com.alibaba.fastjson.JSON;\r\nimport com.alibaba.fastjson.JSONArray;\r\nimport com.alibaba.fastjson.JSONObject;\r\nimport com.bmts.heating.commons.container.performance.annotation.Astrict;\r\nimport com.bmts.heating.commons.container.performance.config.ConnectionToken;\r\nimport com.bmts.heating.commons.container.performance.config.GrpcClientPool;\r\nimport com.bmts.heating.commons.container.performance.config.SavantServices;\r\nimport com.bmts.heating.commons.container.performance.exception.MicroException;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.equipment.ColumnsDto;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.equipment.InsertEquipmentInfoDto;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.tdengine.Abnormal;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.tdengine.InsertHistoryMinuteDto;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.tdengine.PointInfo;\r\nimport com.bmts.heating.commons.entiy.gathersearch.request.*;\r\nimport com.bmts.heating.commons.entiy.gathersearch.response.history.tdengine.QueryBaseHistoryResponse;\r\nimport com.bmts.heating.commons.grpc.lib.services.abnormal.AbnormalGrpc;\r\nimport com.bmts.heating.commons.grpc.lib.services.abnormal.AbnormalOuterClass;\r\nimport com.bmts.heating.commons.grpc.lib.services.common.Common;\r\nimport com.bmts.heating.commons.grpc.lib.services.table.TableOptGrpc;\r\nimport com.bmts.heating.commons.grpc.lib.services.table.TableService;\r\nimport com.bmts.heating.commons.grpc.lib.services.tdengine.*;\r\nimport com.google.gson.JsonArray;\r\nimport io.grpc.ManagedChannel;\r\nimport io.grpc.ManagedChannelBuilder;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.apache.commons.lang3.StringUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.*;\r\n\r\n\r\n@Service\r\n@Slf4j\r\n@Astrict(servicename = \"td\", servicetype = Astrict.EnumService.grpc)\r\npublic class HistoryTdGrpcClient extends SavantServices {\r\n\r\n    @Autowired\r\n    private GrpcClientPool grpcClientPool;\r\n\r\n    public Boolean insertEquipmentPointInfo(InsertEquipmentInfoDto dto) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        TableOptGrpc.TableOptBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = TableOptGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        Common.BoolResult mls = stub.buildSuper(this.insertTable(dto));\r\n        serverChannel.shutdown();\r\n        return mls.getIsOk();\r\n    }\r\n\r\n    public Boolean addColumn(ColumnsDto columnsDto,String tableName) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        TableOptGrpc.TableOptBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = TableOptGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        Common.BoolResult mls = stub.addColumn(this.insertNewColumn(columnsDto,tableName));\r\n        serverChannel.shutdown();\r\n        return mls.getIsOk();\r\n    }\r\n\r\n    private TableService.NewColumn insertNewColumn(ColumnsDto columnsDto, String tableName) {\r\n        TableService.NewColumn.Builder newColumn = TableService.NewColumn.newBuilder();\r\n        TableService.Columns.Builder column = TableService.Columns.newBuilder();\r\n        column.setColumnName(columnsDto.getColumnName());\r\n        this.columnType(columnsDto.getDataType(),column);\r\n        newColumn.setColumn(column);\r\n        newColumn.setTableName(tableName);\r\n        return newColumn.build();\r\n    }\r\n    private TableService.TableColumn deleteTableColumn(ColumnsDto columnsDto,String tableName){\r\n        TableService.TableColumn.Builder tableColumn = TableService.TableColumn.newBuilder();\r\n        tableColumn.setColumnName(columnsDto.getColumnName());\r\n        tableColumn.setTableName(tableName);\r\n        return tableColumn.build();\r\n\r\n    }\r\n    public Boolean delColumn(ColumnsDto columnsDto,String tableName) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        TableOptGrpc.TableOptBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = TableOptGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        Common.BoolResult mls = stub.delColumn(this.deleteTableColumn(columnsDto,tableName));\r\n        serverChannel.shutdown();\r\n        return mls.getIsOk();\r\n    }\r\n\r\n\r\n    public Boolean insertHistoryMinuteToTd(List<InsertHistoryMinuteDto> dto) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        HistoryMinuteGrpc.HistoryMinuteBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = HistoryMinuteGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        Common.BoolResult mls = stub.insert(this.insertHistoryMinute(dto));\r\n        serverChannel.shutdown();\r\n        return mls.getIsOk();\r\n    }\r\n\r\n\r\n    public Boolean insertAbnormal(Abnormal dto) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        AbnormalGrpc.AbnormalBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = AbnormalGrpc.newBlockingStub(serverChannel);\r\n            //.withMaxInboundMessageSize(Integer.MAX_VALUE);\r\n            // server.withMaxOutboundMessageSize(Integer.MAX_VALUE);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        Common.BoolResult insert = stub.insert(this.abnormalInsert(dto));\r\n        serverChannel.shutdown();\r\n        return insert.getIsOk();\r\n    }\r\n\r\n    private AbnormalOuterClass.abnormal abnormalInsert(Abnormal dto) {\r\n        AbnormalOuterClass.abnormal.Builder builder = AbnormalOuterClass.abnormal.newBuilder();\r\n        if (dto.getGroupId() != null) {\r\n            builder.setGroupid(dto.getGroupId());\r\n        }\r\n        if (dto.getLevel() != null) {\r\n            builder.setLevel(dto.getLevel());\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getMsg())) {\r\n            builder.setMsg(dto.getMsg());\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getPoint())) {\r\n            builder.setPoint(dto.getPoint());\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getValue())) {\r\n            builder.setValue(dto.getValue());\r\n        }\r\n        builder.setTs(dto.getTs());\r\n        if (dto.getType() != null) {\r\n            builder.setType(dto.getType());\r\n        }\r\n        return builder.build();\r\n    }\r\n\r\n\r\n    private TableService.Table insertTable(InsertEquipmentInfoDto dto) {\r\n        TableService.Table.Builder builder = TableService.Table.newBuilder();\r\n        if (!dto.getEquipmentName().isEmpty()) {\r\n            builder.setTableName(dto.getEquipmentName());\r\n        }\r\n        if (dto.getPoint().stream().count() > 0) {\r\n            for (ColumnsDto c : dto.getPoint()) {\r\n                TableService.Columns.Builder columnBuilder = TableService.Columns.newBuilder();\r\n                columnBuilder.setColumnName(c.getColumnName());\r\n                this.columnType(c.getDataType(), columnBuilder);\r\n                builder.addPoint(columnBuilder);\r\n            }\r\n        }\r\n        return builder.build();\r\n    }\r\n\r\n    private HistoryMinuteOuterClass.Body insertHistoryMinute(List<InsertHistoryMinuteDto> dto) {\r\n        HistoryMinuteOuterClass.Body.Builder builder = HistoryMinuteOuterClass.Body.newBuilder();\r\n        for (InsertHistoryMinuteDto info : dto) {\r\n            HistoryMinuteOuterClass.Device.Builder deviceBuilder = HistoryMinuteOuterClass.Device.newBuilder();\r\n            deviceBuilder.setDeviceCode(info.getDeviceCode());\r\n            deviceBuilder.setGroupId(info.getGroupId());\r\n            deviceBuilder.setLevel(info.getLevel());\r\n            deviceBuilder.setTs(info.getTs());\r\n            if (info.getId() != null) {\r\n                deviceBuilder.setId(info.getId());\r\n            }\r\n            if (StringUtils.isNotBlank(info.getTableName())) {\r\n                deviceBuilder.setTableName(info.getTableName());\r\n            }\r\n            for (PointInfo point : info.getPoints()) {\r\n                HistoryMinuteOuterClass.PointInfo.Builder pointInfoBuilder = HistoryMinuteOuterClass.PointInfo.newBuilder();\r\n                pointInfoBuilder.setPointName(point.getPointName());\r\n                pointInfoBuilder.setPointValue(point.getValue());\r\n                deviceBuilder.addPoints(pointInfoBuilder);\r\n            }\r\n            builder.addDevices(deviceBuilder);\r\n        }\r\n        return builder.build();\r\n    }\r\n\r\n    private void columnType(String dataType, TableService.Columns.Builder columnBuilder) {\r\n        switch (dataType.toLowerCase()) {\r\n            case \"boolean\":\r\n                columnBuilder.setColumnType(TableService.ColumnType.BOOL);\r\n                break;\r\n            case \"integer\":\r\n            case \"uinteger\":\r\n            case \"long\":\r\n            case \"ulong\":\r\n                columnBuilder.setColumnType(TableService.ColumnType.INT);\r\n                break;\r\n            case \"float\":\r\n                columnBuilder.setColumnType(TableService.ColumnType.FLOAT);\r\n                break;\r\n            case \"double\":\r\n                columnBuilder.setColumnType(TableService.ColumnType.DOUBLE);\r\n                break;\r\n        }\r\n    }\r\n\r\n    //region 基础历史数据\r\n    public QueryBaseHistoryResponse queryTdEngineData(QueryTdDto dto) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        QueryPointsGrpc.QueryPointsBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = QueryPointsGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        log.info(\"gRPC  function of queryTdEngineData ………… Starting post energy-Data\");\r\n        Iterator<QueryPointsOuterClass.Response> result = stub.queryOriginal(this.buildTdHistoryRequest(dto));\r\n        List<QueryPointsOuterClass.Response> responseList = new ArrayList<>();\r\n        JSONArray jsonElements = new JSONArray();\r\n        while (result.hasNext()){\r\n            QueryPointsOuterClass.Response response  = result.next();\r\n            JSONObject jsonObject = JSON.parseObject(response.getJsonData());\r\n            jsonElements.add(jsonObject);\r\n            responseList.add(response);\r\n        }\r\n        QueryBaseHistoryResponse response = new QueryBaseHistoryResponse();\r\n        response.setTotal(responseList.get(0).getTotal());\r\n        response.setJsonData(jsonElements);\r\n        Map map = new HashMap();\r\n        map.put(\"managedChannel\",serverChannel);\r\n        response.setManagedChannel(map);\r\n        log.info(\"gRPC  function of queryTdEngineData ………… Ending\");\r\n        return response;\r\n    }\r\n\r\n    /**\r\n     * TD历史查询汇聚信息\r\n     */\r\n    public QueryPointsOuterClass.Response queryTdAggregate(QueryAggregateTdDto dto) {\r\n        String serverName = \"td\";\r\n        ConnectionToken cd = null;\r\n        ManagedChannel serverChannel = null;\r\n        QueryAggregateGrpc.QueryAggregateBlockingStub stub = null;\r\n        try {\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = QueryAggregateGrpc.newBlockingStub(serverChannel);\r\n        } catch (MicroException e) {\r\n            e.printStackTrace();\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        log.info(\"gRPC  function of queryTdAggregate ………… Starting post energy-Data\");\r\n        QueryPointsOuterClass.Response result = stub.query(this.buildTdAggregateRequest(dto));\r\n        log.info(\"gRPC  function of queryTdAggregate ………… Ending\");\r\n        serverChannel.shutdown();\r\n        return result;\r\n    }\r\n\r\n    private QueryPointsOuterClass.QueryList buildTdHistoryRequest(QueryTdDto dto) {\r\n        QueryPointsOuterClass.QueryList.Builder builder = QueryPointsOuterClass.QueryList.newBuilder();\r\n        if (dto.getStartTime() <= dto.getEndTime()) {\r\n            builder.setStartTime(dto.getStartTime())\r\n                    .setEndTime(dto.getEndTime());\r\n        }\r\n        if (dto.getLevel() != null && dto.getLevel() != 0) {\r\n            builder.setLevel(dto.getLevel());\r\n        }\r\n        if (dto.getLimit() != null) {\r\n            builder.setLimit(dto.getLimit());\r\n        }\r\n        if (dto.getOffset() != null) {\r\n            builder.setOffset(dto.getOffset());\r\n        }\r\n        if (dto.getPoints() != null && dto.getPoints().stream().count() > 0) {\r\n            builder.addAllPoints(dto.getPoints());\r\n        }\r\n        if (dto.getGroupId() != null && dto.getGroupId().stream().count() > 0) {\r\n            builder.addAllGroupid(dto.getGroupId());\r\n        } else {\r\n            log.error(\"无系统Id\", dto.getGroupId().toString());\r\n        }\r\n        if (dto.getOriginalTd() != null) {\r\n            tdEnumClientOriginalTd(dto.getOriginalTd(), builder);\r\n        }\r\n        tdEnumClientQueryTypeTd(dto.getQueryTypeTd(), builder);\r\n        if (StringUtils.isNotBlank(dto.getTableName())) {\r\n            builder.setTableName(dto.getTableName());\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getOrder())) {\r\n            builder.setOrder(dto.getOrder());\r\n        }\r\n        if (dto.getAbnormalType() != null) {\r\n            builder.setAbnormalType(dto.getAbnormalType());\r\n        }\r\n        return builder.build();\r\n    }\r\n\r\n    private QueryAggregateOuterClass.aggregateQuery buildTdAggregateRequest(QueryAggregateTdDto dto) {\r\n        QueryAggregateOuterClass.aggregateQuery.Builder builder = QueryAggregateOuterClass.aggregateQuery.newBuilder();\r\n        if (dto.getStartTime() <= dto.getEndTime()) {\r\n            builder.setStartTime(dto.getStartTime())\r\n                    .setEndTime(dto.getEndTime());\r\n        }\r\n        if (dto.getLimit() != null) {\r\n            builder.setLimit(dto.getLimit());\r\n        }\r\n        if (dto.getOffset() != null) {\r\n            builder.setOffset(dto.getOffset());\r\n        }\r\n        if (dto.getPoints() != null && dto.getPoints().stream().count() > 0) {\r\n            for (AggregatePoint aggregatePoint : dto.getPoints()) {\r\n                QueryAggregateOuterClass.aggregatePoint.Builder pointBuilder = QueryAggregateOuterClass.aggregatePoint.newBuilder();\r\n                pointBuilder.setPointName(aggregatePoint.getPointName());\r\n                tdEnumClientAggregateType(aggregatePoint.getAggregateType(), pointBuilder);\r\n                builder.addPoints(pointBuilder);\r\n            }\r\n        }\r\n        if (dto.getGroupId() != null && dto.getGroupId().stream().count() > 0) {\r\n            builder.addAllGroupid(dto.getGroupId());\r\n        }\r\n        if(dto.getOriginalTd()!=null) {\r\n            tdEnumClientOriginalAggType(dto.getOriginalTd(), builder);\r\n        }\r\n        if (dto.getGroupType()!=null) {\r\n            tdEnumClientAggregateGroupType(dto.getGroupType(), builder);\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getTableName())) {\r\n            builder.setTableName(dto.getTableName());\r\n        }\r\n        if (StringUtils.isNotBlank(dto.getOrder())) {\r\n            builder.setOrder(dto.getOrder());\r\n        }\r\n        return builder.build();\r\n    }\r\n\r\n    private void tdEnumClientOriginalTd(OriginalTd originalTd, QueryPointsOuterClass.QueryList.Builder builder) {\r\n        switch (originalTd) {\r\n            case minute:\r\n                builder.setOriginal(QueryPointsOuterClass.Original.minute);\r\n                break;\r\n            case hour:\r\n                builder.setOriginal(QueryPointsOuterClass.Original.Hour);\r\n                break;\r\n            case day:\r\n                builder.setOriginal(QueryPointsOuterClass.Original.Day);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void tdEnumClientQueryTypeTd(QueryTypeTd queryTypeTd, QueryPointsOuterClass.QueryList.Builder builder) {\r\n        switch (queryTypeTd) {\r\n            case history:\r\n                builder.setQueryType(QueryPointsOuterClass.QueryType.history);\r\n                break;\r\n            case energy:\r\n                builder.setQueryType(QueryPointsOuterClass.QueryType.energy);\r\n                break;\r\n            case abnormal:\r\n                builder.setQueryType(QueryPointsOuterClass.QueryType.abnormal_query);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void tdEnumClientOriginalAggType(OriginalTd originalTd, QueryAggregateOuterClass.aggregateQuery.Builder aggregateBuilder) {\r\n        switch (originalTd) {\r\n            case minute:\r\n                aggregateBuilder.setOriginal(QueryPointsOuterClass.Original.minute);\r\n                break;\r\n            case hour:\r\n                aggregateBuilder.setOriginal(QueryPointsOuterClass.Original.Hour);\r\n                break;\r\n            case day:\r\n                aggregateBuilder.setOriginal(QueryPointsOuterClass.Original.Day);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void tdEnumClientAggregateGroupType(AggregateGroupType aggregateGroupType, QueryAggregateOuterClass.aggregateQuery.Builder builder) {\r\n        switch (aggregateGroupType) {\r\n            case single:\r\n                builder.setGroupType(QueryAggregateOuterClass.GroupType.singal);\r\n                break;\r\n            case group:\r\n                builder.setGroupType(QueryAggregateOuterClass.GroupType.group);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private void tdEnumClientAggregateType(AggregateType aggregateType, QueryAggregateOuterClass.aggregatePoint.Builder builder) {\r\n        switch (aggregateType) {\r\n            case avg:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.avg);\r\n                break;\r\n            case sum:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.sum);\r\n                break;\r\n            case max:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.max);\r\n                break;\r\n            case min:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.min);\r\n                break;\r\n            case TWA:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.TWA);\r\n                break;\r\n            case STDDEV:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.STDDEV);\r\n                break;\r\n            case diff:\r\n                builder.setAggregateType(QueryAggregateOuterClass.aggregateType.diff);\r\n                break;\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/HistoryTdGrpcClient.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/HistoryTdGrpcClient.java	(date 1641958771900)
+@@ -5,7 +5,7 @@
+ import com.alibaba.fastjson.JSONObject;
+ import com.bmts.heating.commons.container.performance.annotation.Astrict;
+ import com.bmts.heating.commons.container.performance.config.ConnectionToken;
+-import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
++//import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
+ import com.bmts.heating.commons.container.performance.config.SavantServices;
+ import com.bmts.heating.commons.container.performance.exception.MicroException;
+ import com.bmts.heating.commons.entiy.baseInfo.request.equipment.ColumnsDto;
+@@ -13,6 +13,7 @@
+ import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.Abnormal;
+ import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.InsertHistoryMinuteDto;
+ import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.PointInfo;
++import com.bmts.heating.commons.entiy.baseInfo.request.tdengine.SecondNetDataMinuteDto;
+ import com.bmts.heating.commons.entiy.gathersearch.request.*;
+ import com.bmts.heating.commons.entiy.gathersearch.response.history.tdengine.QueryBaseHistoryResponse;
+ import com.bmts.heating.commons.grpc.lib.services.abnormal.AbnormalGrpc;
+@@ -37,8 +38,8 @@
+ @Astrict(servicename = "td", servicetype = Astrict.EnumService.grpc)
+ public class HistoryTdGrpcClient extends SavantServices {
+ 
+-    @Autowired
+-    private GrpcClientPool grpcClientPool;
++//    @Autowired
++//    private GrpcClientPool grpcClientPool;
+ 
+     public Boolean insertEquipmentPointInfo(InsertEquipmentInfoDto dto) {
+         String serverName = "td";
+@@ -47,8 +48,8 @@
+         TableOptGrpc.TableOptBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = TableOptGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+@@ -68,8 +69,8 @@
+         TableOptGrpc.TableOptBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = TableOptGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+@@ -105,8 +106,8 @@
+         TableOptGrpc.TableOptBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = TableOptGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+@@ -127,8 +128,8 @@
+         HistoryMinuteGrpc.HistoryMinuteBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = HistoryMinuteGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+@@ -141,6 +142,27 @@
+         return mls.getIsOk();
+     }
+ 
++    public Boolean insertSecondHistoryMinuteToTd(List<SecondNetDataMinuteDto> dto) {
++        String serverName = "td";
++        ConnectionToken cd = null;
++        ManagedChannel serverChannel = null;
++        MetaGrpc.MetaBlockingStub stub = null;
++        try {
++            cd = super.getToken(serverName);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
++            stub = MetaGrpc.newBlockingStub(serverChannel);
++        } catch (MicroException e) {
++            e.printStackTrace();
++            super.clearToken(serverName, e);
++        } finally {
++            super.backToken(serverName, cd);
++        }
++        Common.BoolResult mls = stub.insert(this.insertSecondHistoryMinute(dto));
++        serverChannel.shutdown();
++        return mls.getIsOk();
++    }
++
+ 
+     public Boolean insertAbnormal(Abnormal dto) {
+         String serverName = "td";
+@@ -149,8 +171,8 @@
+         AbnormalGrpc.AbnormalBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = AbnormalGrpc.newBlockingStub(serverChannel);
+             //.withMaxInboundMessageSize(Integer.MAX_VALUE);
+             // server.withMaxOutboundMessageSize(Integer.MAX_VALUE);
+@@ -231,6 +253,34 @@
+         return builder.build();
+     }
+ 
++    private MetaOuterClass.Request insertSecondHistoryMinute(List<SecondNetDataMinuteDto> dto) {
++        MetaOuterClass.Request.Builder builder = MetaOuterClass.Request.newBuilder();
++        for (SecondNetDataMinuteDto info : dto) {
++            MetaOuterClass.TableInfo.Builder tableBuilder = MetaOuterClass.TableInfo.newBuilder();
++            tableBuilder.setTs(info.getTs());
++            if (StringUtils.isNotBlank(info.getStableName())) {
++                tableBuilder.setStableName(info.getStableName());
++            }
++            if (StringUtils.isNotBlank(info.getTableName())) {
++                tableBuilder.setTableName(info.getTableName());
++            }
++            for (PointInfo point : info.getPoints()) {
++                MetaOuterClass.PointData.Builder pointInfoBuilder = MetaOuterClass.PointData.newBuilder();
++                pointInfoBuilder.setPointName(point.getPointName());
++                pointInfoBuilder.setPointValue(point.getValue());
++                tableBuilder.addPoints(pointInfoBuilder);
++            }
++            for (PointInfo point : info.getTags()) {
++                MetaOuterClass.PointData.Builder pointInfoBuilder = MetaOuterClass.PointData.newBuilder();
++                pointInfoBuilder.setPointName(point.getPointName());
++                pointInfoBuilder.setPointValue(point.getValue());
++                tableBuilder.addTags(pointInfoBuilder);
++            }
++            builder.addDevices(tableBuilder);
++        }
++        return builder.build();
++    }
++
+     private void columnType(String dataType, TableService.Columns.Builder columnBuilder) {
+         switch (dataType.toLowerCase()) {
+             case "boolean":
+@@ -259,8 +309,8 @@
+         QueryPointsGrpc.QueryPointsBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = QueryPointsGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+@@ -298,8 +348,8 @@
+         QueryAggregateGrpc.QueryAggregateBlockingStub stub = null;
+         try {
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = QueryAggregateGrpc.newBlockingStub(serverChannel);
+         } catch (MicroException e) {
+             e.printStackTrace();
+Index: hnt-micro-service/hnt-service-application/hnt-application-bussiness-baseInformation/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    id: 474831312123\r\n  profiles: dev\r\nmicro:\r\n  server:\r\n    host: baseInformation\r\n    port: 4590\r\n    name: baseInformation\r\n    tokens: 10000\r\n  pool:\r\n    maxTotal: 50  #池中的最大连接数\r\n    minIdle: 0    #最少的空闲连接数\r\n    maxIdle: 50    #最多的空闲连接数\r\n    maxWaitMillis: 1    #当连接池资源耗尽时,调用者最大阻塞的时间,超时时抛出异常 单位:毫秒数\r\n    lifo: true    #连接池存放池化对象方式,true放在空闲队列最前面,false放在空闲队列最后\r\n    blockWhenExhausted: true  #连接耗尽时是否阻塞,默认为true\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-application/hnt-application-bussiness-baseInformation/src/main/resources/application-dev.yml	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-application/hnt-application-bussiness-baseInformation/src/main/resources/application-dev.yml	(date 1639037929888)
+@@ -4,9 +4,9 @@
+   profiles: dev
+ micro:
+   server:
+-    host: baseInformation
++    host: baseInformation6
+     port: 4590
+-    name: baseInformation
++    name: baseInformation6
+     tokens: 10000
+   pool:
+     maxTotal: 50  #池中的最大连接数
+Index: hnt-web-modules/hnt-web-scada/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    id: 6234511231\r\n  profiles: dev\r\n\r\nmicro:\r\n  server:\r\n    host: scada\r\n    port: 7171\r\n    name: scada\r\n    tokens: 50\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-web-modules/hnt-web-scada/src/main/resources/application-dev.yml	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-web-modules/hnt-web-scada/src/main/resources/application-dev.yml	(date 1639036485494)
+@@ -5,8 +5,8 @@
+ 
+ micro:
+   server:
+-    host: scada
++    host: scada6
+     port: 7171
+-    name: scada
++    name: scada6
+     tokens: 50
+ 
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <parent>\r\n        <artifactId>hnt-monitor-plugins</artifactId>\r\n        <groupId>com.bmts.heating</groupId>\r\n        <version>2.0</version>\r\n    </parent>\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <packaging>jar</packaging>\r\n    <version>2.0</version>\r\n    <artifactId>hnt-monitor-plugins-second</artifactId>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-mongodb</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.spring4all</groupId>\r\n            <artifactId>mongodb-plus-spring-boot-starter</artifactId>\r\n            <version>1.0.0.RELEASE</version>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/pom.xml	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/pom.xml	(date 1641894225278)
+@@ -22,6 +22,18 @@
+             <artifactId>mongodb-plus-spring-boot-starter</artifactId>
+             <version>1.0.0.RELEASE</version>
+         </dependency>
++        <dependency>
++            <groupId>net.sf.json-lib</groupId>
++            <artifactId>json-lib</artifactId>
++            <version>2.4</version>
++            <classifier>jdk15</classifier>
++        </dependency>
++        <dependency>
++            <groupId>com.bmts.heating</groupId>
++            <artifactId>hnt-middleware-grpc-td</artifactId>
++            <version>2.0</version>
++            <scope>compile</scope>
++        </dependency>
+     </dependencies>
+ 
+ </project>
+\ No newline at end of file
+Index: hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-cacheLibrary/src/main/java/com/bmts/heating/middleware/cache/services/RedisCacheService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.middleware.cache.services;\r\n\r\nimport com.bmts.heating.commons.basement.model.cache.PointCache;\r\nimport com.bmts.heating.commons.basement.model.cache.PointRank;\r\nimport com.bmts.heating.commons.container.performance.annotation.Astrict;\r\nimport com.bmts.heating.commons.container.performance.config.ConnectionToken;\r\nimport com.bmts.heating.commons.container.performance.config.GrpcClientPool;\r\nimport com.bmts.heating.commons.container.performance.config.SavantServices;\r\nimport com.bmts.heating.commons.container.performance.exception.MicroException;\r\nimport com.bmts.heating.commons.grpc.lib.services.cache.CacheGrpc;\r\nimport com.bmts.heating.commons.grpc.lib.services.cache.CacheOuterClass;\r\nimport com.bmts.heating.commons.grpc.lib.services.points.PointOuterClass;\r\nimport com.bmts.heating.commons.grpc.lib.util.ProtoCompiler;\r\nimport com.bmts.heating.commons.utils.common.Tuple;\r\nimport com.bmts.heating.commons.utils.msmq.PointL;\r\nimport com.bmts.heating.commons.utils.spring.SpringContextUtil;\r\nimport com.google.protobuf.Empty;\r\nimport io.grpc.ManagedChannel;\r\nimport io.grpc.ManagedChannelBuilder;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.apache.commons.lang3.StringUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.io.IOException;\r\nimport java.net.InetAddress;\r\nimport java.net.UnknownHostException;\r\nimport java.util.*;\r\n\r\n@Slf4j\r\n@Service\r\n@Astrict(servicename = \"cache-grpc-server\", servicetype = Astrict.EnumService.grpc)\r\npublic class RedisCacheService extends SavantServices {\r\n    private final String serverName = \"cache-grpc-server\";\r\n    ConnectionToken cd = null;\r\n\r\n\r\n    /**\r\n     * 获取热源的点数据信息\r\n     *\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n    public List<PointL> querySourcePoints() throws MicroException, IOException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        Iterator<PointOuterClass.PointList> pointListIterator = null;\r\n        try {\r\n            pointListIterator = cacheBlockingStubManagedChannelTuple.first.querySourcePoints(Empty.newBuilder().build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryComputePoints by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        return mapPointStream(pointListIterator, cacheBlockingStubManagedChannelTuple);\r\n    }\r\n\r\n    public List<PointL> getPoints(String deviceId, int start, int end) throws IOException, MicroException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannel = buildStub();\r\n        CacheOuterClass.PointsParam build = CacheOuterClass.PointsParam.newBuilder().setDeviceId(deviceId)\r\n                .setStart(start).setEnd(end).build();\r\n        PointOuterClass.PointList pointList = null;\r\n        try {\r\n            pointList = cacheBlockingStubManagedChannel.first.queryAllPoint(build);\r\n        } catch (Exception e) {\r\n            log.error(\"call queryAllPoint by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        cacheBlockingStubManagedChannel.second.shutdown();\r\n        return mapPoints(pointList.getPlistList());\r\n    }\r\n\r\n    /**\r\n     * 根据id 查找点\r\n     *\r\n     * @param deviceId\r\n     * @return\r\n     * @throws IOException\r\n     * @throws MicroException\r\n     */\r\n    public List<PointL> getPoints(String deviceId) throws IOException, MicroException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        CacheOuterClass.queryPointsParam build = CacheOuterClass.queryPointsParam.newBuilder().setDeviceId(deviceId).build();\r\n        Iterator<PointOuterClass.PointList> pointListIterator = null;\r\n        try {\r\n            //pointList = cacheBlockingStubManagedChannelTuple.first.queryPoints(build);\r\n            pointListIterator = cacheBlockingStubManagedChannelTuple.first.queryPoints(build);\r\n\r\n        } catch (Exception e) {\r\n            log.error(\"call queryPoints by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        return mapPointStream(pointListIterator, cacheBlockingStubManagedChannelTuple);\r\n    }\r\n\r\n    /**\r\n     * 获取计算参数名称\r\n     *\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n    public List<PointL> queryComputePoints() throws MicroException, IOException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        PointOuterClass.PointList pointList = null;\r\n        try {\r\n            pointList = cacheBlockingStubManagedChannelTuple.first.queryComputePoints(Empty.newBuilder().build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryComputePoints by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n\r\n        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n        return mapPoints(pointList.getPlistList());\r\n    }\r\n\r\n    /**\r\n     * 根据关联id获取所有点\r\n     *\r\n     * @param systems\r\n     * @param level\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n    public Map<Integer, String[]> queryPointsByReleverce(List<Integer> systems, int level) throws MicroException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        CacheOuterClass.PointsByIdsResults pointsBySystemResult = null;\r\n        try {\r\n            pointsBySystemResult = cacheBlockingStubManagedChannelTuple.first.queryPointsByIds(CacheOuterClass.queryPointsByIdsDto.newBuilder().addAllRelevanceId(systems).setLevel(level).build());\r\n\r\n        } catch (Exception e) {\r\n            log.error(\"call queryPointsBySystem by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n        Map<Integer, String[]> maps = new HashMap<>(pointsBySystemResult.getPointsByIdItemList().size());\r\n        pointsBySystemResult.getPointsByIdItemList().forEach(x -> {\r\n            String[] points = new String[x.getPointNameCount()];\r\n            for (int i = 0; i < x.getPointNameList().size(); i++) {\r\n                points[i] = x.getPointNameList().get(i);\r\n            }\r\n            maps.put(x.getId(), points);\r\n        });\r\n        return maps;\r\n    }\r\n\r\n    /**\r\n     * 获取基础数据层级关系\r\n     *\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n//    public List<FirstNetBase> queryFirstNetBase() throws MicroException {\r\n//\r\n//        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n//        CacheOuterClass.FirstNetBaseList firstNetBaseList = null;\r\n//        try {\r\n//            firstNetBaseList = cacheBlockingStubManagedChannelTuple.first.queryFirstNetBase(Empty.newBuilder().build());\r\n//        } catch (Exception e) {\r\n//            log.error(\"call queryFirstNetBase by service {} cause execption {}\", serverName, e);\r\n//            super.clearToken(serverName, e);\r\n//        } finally {\r\n//            super.backToken(serverName, cd);\r\n//        }\r\n//        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n//        List<FirstNetBase> results = new ArrayList<>(firstNetBaseList.getFirstNetBaseList().size());\r\n//        firstNetBaseList.getFirstNetBaseList().forEach(x -> {\r\n//            try {\r\n//                FirstNetBase firstNetBase = ProtoCompiler.toPojoBean(FirstNetBase.class, x);\r\n//                results.add(firstNetBase);\r\n//            } catch (IOException e) {\r\n//                e.printStackTrace();\r\n//            }\r\n//\r\n//        });\r\n//        return results;\r\n//    }\r\n    /**\r\n     * 获取热源配点基础数据层级关系\r\n     *\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n//    public List<FirstNetBase> querySourceFirstNetBase() throws MicroException {\r\n//\r\n//        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n//        CacheOuterClass.FirstNetBaseList firstNetBaseList = null;\r\n//        try {\r\n//            firstNetBaseList = cacheBlockingStubManagedChannelTuple.first.querySourceFirstNetBase(Empty.newBuilder().build());\r\n//        } catch (Exception e) {\r\n//            log.error(\"call queryFirstNetBase by service {} cause execption {}\", serverName, e);\r\n//            super.clearToken(serverName, e);\r\n//        } finally {\r\n//            super.backToken(serverName, cd);\r\n//        }\r\n//        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n//        List<FirstNetBase> results = new ArrayList<>(firstNetBaseList.getFirstNetBaseList().size());\r\n//        firstNetBaseList.getFirstNetBaseList().forEach(x -> {\r\n//            try {\r\n//                FirstNetBase firstNetBase = ProtoCompiler.toPojoBean(FirstNetBase.class, x);\r\n//                results.add(firstNetBase);\r\n//            } catch (IOException e) {\r\n//                e.printStackTrace();\r\n//            }\r\n//\r\n//        });\r\n//        return results;\r\n//    }\r\n\r\n    /**\r\n     * 查询实时数据\r\n     *\r\n     * @param map key 系统id value 点名称集合\r\n     * @return\r\n     * @throws MicroException\r\n     * @throws IOException`\r\n     */\r\n    public List<PointCache> queryRealDataBySystems(Map<Integer, String[]> map, int level) throws MicroException, IOException {\r\n\r\n        // log.warn(\"查询缓存参数{},{}\", JSONObject.toJSONString(map), level);\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStub = buildStub();\r\n        CacheOuterClass.PointParam.Builder builder = CacheOuterClass.PointParam.newBuilder();\r\n        builder.setMapPointConfig(true);\r\n        map.forEach((k, v) -> {\r\n            CacheOuterClass.PointParamItem.Builder builderItem = CacheOuterClass.PointParamItem.newBuilder();\r\n            builderItem.addAllPointNames(Arrays.asList(v));\r\n            builderItem.setId(k);\r\n            builderItem.setLevel(level);\r\n            builder.addPointParamItem(builderItem);\r\n        });\r\n        PointOuterClass.PointCacheList pointList = null;\r\n        try {\r\n            pointList = cacheBlockingStub.first.queryRealDataBySystem(builder.build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryRealDataBySystem by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        cacheBlockingStub.second.shutdown();\r\n        return mapPointCaches(pointList);\r\n    }\r\n\r\n    public List<PointCache> queryRealOnlyValue(Map<Integer, String[]> map, int level) throws MicroException, IOException {\r\n\r\n        // log.warn(\"查询缓存参数{},{}\", JSONObject.toJSONString(map), level);\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStub = buildStub();\r\n        CacheOuterClass.PointParam.Builder builder = CacheOuterClass.PointParam.newBuilder();\r\n        builder.setMapPointConfig(false);\r\n        map.forEach((k, v) -> {\r\n            CacheOuterClass.PointParamItem.Builder builderItem = CacheOuterClass.PointParamItem.newBuilder();\r\n            builderItem.addAllPointNames(Arrays.asList(v));\r\n            builderItem.setId(k);\r\n            builderItem.setLevel(level);\r\n            builder.addPointParamItem(builderItem);\r\n        });\r\n        PointOuterClass.PointCacheList pointList = null;\r\n        try {\r\n            pointList = cacheBlockingStub.first.queryRealDataBySystem(builder.build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryRealDataBySystem by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        cacheBlockingStub.second.shutdown();\r\n        return mapPointCaches(pointList);\r\n    }\r\n\r\n    /**\r\n     * 获取缓存数据排行\r\n     *\r\n     * @param pointName\r\n     * @param startValue\r\n     * @param endValue\r\n     * @param length\r\n     * @param isAsc\r\n     * @param level\r\n     * @return\r\n     * @throws MicroException\r\n     */\r\n    public PointRank queryRank(String pointName, double startValue, double endValue, int length, boolean isAsc, int level) throws MicroException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        CacheOuterClass.RankIntervalParam.Builder builder = CacheOuterClass.RankIntervalParam.newBuilder();\r\n        builder.setStartValue(startValue).setEndValue(endValue).setLength(length).setIsAsc(isAsc).setPointName(pointName).setLevel(level);\r\n        CacheOuterClass.RankList rankList = null;\r\n        try {\r\n            rankList = cacheBlockingStubManagedChannelTuple.first.queryRankInterval(builder.build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryRankInterval by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n        return buildRank(rankList);\r\n    }\r\n\r\n    public PointRank queryRank(String pointName, int length, boolean isAsc, int level) throws MicroException {\r\n        Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> cacheBlockingStubManagedChannelTuple = buildStub();\r\n        CacheOuterClass.RankIntervalParam.Builder builder = CacheOuterClass.RankIntervalParam.newBuilder();\r\n        builder.setLength(length).setIsAsc(isAsc).setPointName(pointName).setLevel(level);\r\n        CacheOuterClass.RankList rankList = null;\r\n        try {\r\n            rankList = cacheBlockingStubManagedChannelTuple.first.queryRank(builder.build());\r\n        } catch (Exception e) {\r\n            log.error(\"call queryRank by service {} cause execption {}\", serverName, e);\r\n            super.clearToken(serverName, e);\r\n        } finally {\r\n            super.backToken(serverName, cd);\r\n        }\r\n\r\n        cacheBlockingStubManagedChannelTuple.second.shutdown();\r\n        return buildRank(rankList);\r\n    }\r\n\r\n    private String getHost(ConnectionToken cd) throws UnknownHostException {\r\n        return SpringContextUtil.getActiveProfile().equals(\"debug\") ? InetAddress.getLocalHost().getHostAddress() : cd.getHost();\r\n    }\r\n\r\n    @Autowired\r\n    private GrpcClientPool grpcClientPool;\r\n\r\n    private Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> buildStub() throws MicroException {\r\n\r\n        String serverName = \"cache-grpc-server\";\r\n        ManagedChannel serverChannel = null;\r\n        CacheGrpc.CacheBlockingStub stub = null;\r\n        try {\r\n            //获取令牌\r\n            cd = super.getToken(serverName);\r\n//            serverChannel = ManagedChannelBuilder.forAddress(getHost(cd), new Integer(cd.getPort())).usePlaintext().build();\r\n            serverChannel = grpcClientPool.getManagedChannel(cd);\r\n            stub = CacheGrpc.newBlockingStub(serverChannel).withMaxInboundMessageSize(Integer.MAX_VALUE).withMaxOutboundMessageSize(Integer.MAX_VALUE);\r\n        } catch (Exception e) {\r\n//            super.clearToken(serverName, e);\r\n            log.error(\"get service {} cause execption {}\", serverName, e);\r\n        } finally {\r\n//            super.backToken(serverName, cd);\r\n        }\r\n\r\n        return new Tuple<>(stub, serverChannel);\r\n    }\r\n\r\n    private PointRank buildRank(CacheOuterClass.RankList rankList) {\r\n        PointRank pointRank = new PointRank();\r\n        pointRank.setTotal(rankList.getTotal());\r\n        Map<Integer, Double> map = new LinkedHashMap<>(rankList.getRankItemCount());\r\n        for (CacheOuterClass.RankItem rankItem : rankList.getRankItemList()) {\r\n            map.put(rankItem.getId(), rankItem.getValue());\r\n        }\r\n        pointRank.setMap(map);\r\n        return pointRank;\r\n    }\r\n\r\n    private List<PointCache> mapPointCaches(PointOuterClass.PointCacheList plistList) throws IOException {\r\n        List<PointCache> list = new ArrayList<>(plistList.getPlistCount());\r\n        for (PointOuterClass.PointCache pointCache : plistList.getPlistList()) {\r\n//            PointCache pointCacheItem = new PointCache();\r\n//            pointCacheItem.setAccidentLower(new BigDecimal(\"0\"));\r\n//            pointCacheItem.setAccidentHigh(new BigDecimal(\"0\"));\r\n//            pointCacheItem.setRunningLower(new BigDecimal(\"0\"));\r\n//            pointCacheItem.setRunningHigh(new BigDecimal(\"0\"));\r\n//            pointCacheItem.setRangeLower(new BigDecimal(\"0\"));\r\n//            pointCacheItem.setIsAlarm(false);\r\n//            pointCacheItem.setPointParameterTypeName(\"\");\r\n//            pointCacheItem.setUnitValue(\"\");\r\n//            pointCacheItem.setUnitName(\"\");\r\n//            pointCacheItem.setPointId(0);\r\n//            pointCacheItem.setPointName(\"\");\r\n//            pointCacheItem.setPointAddress(\"\");\r\n//            pointCacheItem.setValue(\"\");\r\n//            pointCacheItem.setTimeStrap(0L);\r\n//            pointCacheItem.setQualityStrap(0);\r\n//            pointCacheItem.setOldValue(\"\");\r\n//            pointCacheItem.setHeatingSystemId(0);\r\n\r\n            list.add(ProtoCompiler.toPojoBean(PointCache.class, pointCache));\r\n        }\r\n        return list;\r\n    }\r\n\r\n    private List<PointL> mapPoints(List<PointOuterClass.PointL> plistList) throws IOException {\r\n        int size = plistList.size();\r\n        List<PointL> result = new ArrayList<>(size);\r\n\r\n        long startTime = System.currentTimeMillis();\r\n\r\n        for (int i = 0; i < size; i++) {\r\n            PointOuterClass.PointL pointL = plistList.get(i);\r\n            PointL p = ProtoCompiler.toPojoBean(PointL.class, pointL);\r\n            List<Integer> washArrayList = pointL.getWashArrayList();\r\n            int washSize = washArrayList.size();\r\n            if (washArrayList != null && washSize > 0) {\r\n                int[] washArray = new int[washSize];\r\n                for (int j = 0; j < washSize; j++) {\r\n                    washArray[j] = washArrayList.get(j).intValue();\r\n                }\r\n                p.setWashArray(washArray);\r\n            }\r\n\r\n            result.add(p);\r\n        }\r\n        log.info(\"读取点表耗时 {} ms\", System.currentTimeMillis() - startTime);\r\n        return result;\r\n    }\r\n\r\n\r\n    private List<PointL> mapPointStream(Iterator<PointOuterClass.PointList> pointListIterator, Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> channelTuple) throws IOException {\r\n        long startTime = System.currentTimeMillis();\r\n        PointOuterClass.PointList next = pointListIterator.next();\r\n        List<PointOuterClass.PointL> plistList = next.getPlistList();\r\n\r\n        int size = plistList.size();\r\n        List<PointL> result = new ArrayList<>(size);\r\n\r\n        plistList.stream().forEach(e -> {\r\n            setPointL(result, e);\r\n        });\r\n        log.info(\"读取点表耗时 {} ms\", System.currentTimeMillis() - startTime);\r\n        channelTuple.second.shutdown();\r\n        return result;\r\n    }\r\n\r\n    private void setPointL(List<PointL> result, PointOuterClass.PointL grpcPl) {\r\n        PointL pl = new PointL();\r\n        if (grpcPl.getPointId() != 0) {\r\n            pl.setPointId(grpcPl.getPointId());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getPointName())) {\r\n            pl.setPointName(grpcPl.getPointName());\r\n        }\r\n        if (grpcPl.getType() != 0) {\r\n            pl.setType(grpcPl.getType());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getDeviceId())) {\r\n            pl.setDeviceId(grpcPl.getDeviceId());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getPointlsSign())) {\r\n            pl.setPointlsSign(grpcPl.getPointlsSign());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getOldValue())) {\r\n            pl.setOldValue(grpcPl.getOldValue());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getValue())) {\r\n            pl.setValue(grpcPl.getValue());\r\n        }\r\n        pl.setTimeStrap(grpcPl.getTimeStrap());\r\n        if (grpcPl.getQualityStrap() != 0) {\r\n            pl.setQualityStrap(grpcPl.getQualityStrap());\r\n        }\r\n        if (grpcPl.getRelevanceId() != 0) {\r\n            pl.setRelevanceId(grpcPl.getRelevanceId());\r\n        }\r\n        List<Integer> washArrayList = grpcPl.getWashArrayList();\r\n        int washSize = washArrayList.size();\r\n        if (washArrayList != null && washSize > 0) {\r\n            int[] washArray = new int[washSize];\r\n            for (int j = 0; j < washSize; j++) {\r\n                washArray[j] = washArrayList.get(j).intValue();\r\n            }\r\n            pl.setWashArray(washArray);\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getOrderValue())) {\r\n            pl.setOrderValue(grpcPl.getOrderValue());\r\n        }\r\n        if (grpcPl.getDataType() != 0) {\r\n            pl.setDataType(grpcPl.getDataType());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getExpandDesc())) {\r\n            pl.setExpandDesc(grpcPl.getExpandDesc());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getApplicationName())) {\r\n            pl.setApplicationName(grpcPl.getApplicationName());\r\n        }\r\n        if (grpcPl.getLevel() != 0) {\r\n            pl.setLevel(grpcPl.getLevel());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getExpression())) {\r\n            pl.setExpression(grpcPl.getExpression());\r\n        }\r\n        if (grpcPl.getNumber() != 0) {\r\n            pl.setNumber(grpcPl.getNumber());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getHightLower())) {\r\n            pl.setHightLower(grpcPl.getHightLower());\r\n        }\r\n        if (grpcPl.getPointConfig() != 0) {\r\n            pl.setPointConfig(grpcPl.getPointConfig());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getSystemNum())) {\r\n            pl.setSystemNum(Integer.parseInt(grpcPl.getSystemNum()));\r\n        }\r\n        if (grpcPl.getParentSyncNum() != 0) {\r\n            pl.setParentSyncNum(grpcPl.getParentSyncNum());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getPointStandardName())) {\r\n            pl.setPointStandardName(grpcPl.getPointStandardName());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getEquipmentCode())) {\r\n            pl.setEquipmentCode(grpcPl.getEquipmentCode());\r\n        }\r\n        if (grpcPl.getHeatType() != 0) {\r\n            pl.setHeatType(grpcPl.getHeatType());\r\n        }\r\n        if (StringUtils.isNotBlank(grpcPl.getSyncNumber())) {\r\n            pl.setSyncNumber(grpcPl.getSyncNumber());\r\n        }\r\n\r\n        result.add(pl);\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-cacheLibrary/src/main/java/com/bmts/heating/middleware/cache/services/RedisCacheService.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-cacheLibrary/src/main/java/com/bmts/heating/middleware/cache/services/RedisCacheService.java	(date 1641885431939)
+@@ -4,7 +4,7 @@
+ import com.bmts.heating.commons.basement.model.cache.PointRank;
+ import com.bmts.heating.commons.container.performance.annotation.Astrict;
+ import com.bmts.heating.commons.container.performance.config.ConnectionToken;
+-import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
++//import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
+ import com.bmts.heating.commons.container.performance.config.SavantServices;
+ import com.bmts.heating.commons.container.performance.exception.MicroException;
+ import com.bmts.heating.commons.grpc.lib.services.cache.CacheGrpc;
+@@ -325,8 +325,8 @@
+         return SpringContextUtil.getActiveProfile().equals("debug") ? InetAddress.getLocalHost().getHostAddress() : cd.getHost();
+     }
+ 
+-    @Autowired
+-    private GrpcClientPool grpcClientPool;
++//    @Autowired
++//    private GrpcClientPool grpcClientPool;
+ 
+     private Tuple<CacheGrpc.CacheBlockingStub, ManagedChannel> buildStub() throws MicroException {
+ 
+@@ -336,8 +336,8 @@
+         try {
+             //获取令牌
+             cd = super.getToken(serverName);
+-//            serverChannel = ManagedChannelBuilder.forAddress(getHost(cd), new Integer(cd.getPort())).usePlaintext().build();
+-            serverChannel = grpcClientPool.getManagedChannel(cd);
++            serverChannel = ManagedChannelBuilder.forAddress(getHost(cd), new Integer(cd.getPort())).usePlaintext().build();
++//            serverChannel = grpcClientPool.getManagedChannel(cd);
+             stub = CacheGrpc.newBlockingStub(serverChannel).withMaxInboundMessageSize(Integer.MAX_VALUE).withMaxOutboundMessageSize(Integer.MAX_VALUE);
+         } catch (Exception e) {
+ //            super.clearToken(serverName, e);
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/joggle/MonitorSecondJoggle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.monitor.plugins.second.joggle;\r\n\r\nimport com.alibaba.fastjson.JSON;\r\nimport com.alibaba.fastjson.JSONObject;\r\nimport com.bmts.heating.commons.entiy.second.request.device.PointSecondDto;\r\nimport com.bmts.heating.commons.utils.restful.Response;\r\nimport com.bmts.heating.monitor.plugins.second.pojo.MongoInserDto;\r\nimport com.bmts.heating.monitor.plugins.second.pojo.MongoRoomDto;\r\nimport com.bmts.heating.monitor.plugins.second.service.MonitorSecondService;\r\nimport io.swagger.annotations.Api;\r\nimport io.swagger.annotations.ApiOperation;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.data.mongodb.core.MongoTemplate;\r\nimport org.springframework.data.mongodb.core.query.Criteria;\r\nimport org.springframework.data.mongodb.core.query.Query;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Random;\r\nimport java.util.Set;\r\nimport java.util.concurrent.atomic.AtomicInteger;\r\n\r\n/**\r\n * @ClassName: MongoDBJoggle\r\n * @Description: 测试查询MongDB\r\n * @Author: pxf\r\n * @Date: 2022/1/5 16:19\r\n * @Version: 1.0\r\n */\r\n@Slf4j\r\n@Api(tags = \"处理二网数据接口\")\r\n@RestController\r\n@RequestMapping(\"/second\")\r\npublic class MonitorSecondJoggle {\r\n\r\n    @Autowired\r\n    private MongoTemplate mongoTemplate;\r\n\r\n    @Autowired\r\n    private MonitorSecondService monitorSecondService;\r\n\r\n    @PostMapping(\"/receive\")\r\n    @ApiOperation(\"接收数据\")\r\n    public Response receive(@RequestBody List<PointSecondDto> list) {\r\n        // 进行查询，根据 deviceCode 进行查询 根据视图进行查询得出\r\n        // devices.rt.deviceCode=\"30\"\r\n\r\n\r\n        monitorSecondService.updatList(list);\r\n        return Response.success();\r\n    }\r\n\r\n    @GetMapping(\"/test\")\r\n    @ApiOperation(\"查询数据\")\r\n    public Response query() {\r\n        List<MongoRoomDto> all = mongoTemplate.findAll(MongoRoomDto.class);\r\n        all.stream().forEach(e -> {\r\n            Object devices = e.getDevices();\r\n            JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(devices));\r\n            Set<String> sets = jsonObject.keySet();\r\n            sets.stream().forEach(x -> {\r\n                String x1 = x;\r\n                Object o = jsonObject.get(x);\r\n\r\n            });\r\n\r\n        });\r\n        return Response.success();\r\n    }\r\n\r\n    private final static AtomicInteger num = new AtomicInteger(1);\r\n\r\n    @GetMapping(\"/add\")\r\n    @ApiOperation(\"查询数据\")\r\n    public Response add() {\r\n\r\n        Integer index = 1;\r\n\r\n        // 2个亿数据\r\n        for (int i = 0; i < 40000; i++) {\r\n\r\n\r\n            List<MongoInserDto> list = new ArrayList<>();\r\n            for (int j = 1; j < 5001; j++) {\r\n                MongoInserDto dto = new MongoInserDto();\r\n                dto.setDeviceCode(String.valueOf(num.get()));\r\n                dto.setGropuId(String.valueOf(new Random().nextInt(999999)));\r\n                long timeStamp = System.currentTimeMillis();\r\n                dto.setTimeStamp(timeStamp);\r\n\r\n                // 组装数据\r\n                JSONObject jsonObject = new JSONObject();\r\n                jsonObject.put(\"time\", timeStamp);\r\n                jsonObject.put(\"value\", new Random().nextInt(100));\r\n\r\n                JSONObject jsonObject1 = new JSONObject();\r\n                jsonObject1.put(\"time\", timeStamp);\r\n                jsonObject1.put(\"value\", new Random().nextInt(100));\r\n\r\n\r\n                JSONObject jsonObjectadd2 = new JSONObject();\r\n                jsonObjectadd2.put(\"timeStamp\", timeStamp);\r\n                jsonObjectadd2.put(\"ph\", jsonObject1);\r\n                jsonObjectadd2.put(\"tg\", jsonObject);\r\n\r\n                dto.setRealData(jsonObjectadd2);\r\n                list.add(dto);\r\n                index++;\r\n                num.set(index);\r\n            }\r\n\r\n            mongoTemplate.insert(list, MongoInserDto.class);\r\n\r\n        }\r\n\r\n        return Response.success();\r\n    }\r\n\r\n    @GetMapping(\"/all\")\r\n    @ApiOperation(\"查询所有数据\")\r\n    public Response queryAll() {\r\n        long startTime = System.currentTimeMillis();\r\n        List<MongoInserDto> all = mongoTemplate.findAll(MongoInserDto.class);\r\n        //System.out.println(\"查询全部耗时：---\" + (System.currentTimeMillis() - startTime));\r\n\r\n        return Response.success();\r\n    }\r\n\r\n    @GetMapping(\"/one\")\r\n    @ApiOperation(\"查询单个数据\")\r\n    public Response queryOne() {\r\n        long startTime = System.currentTimeMillis();\r\n        Query query = new Query();\r\n        query.addCriteria(Criteria.where(\"_id\").is(\"61d810e24d098555bf86f5e0\"));\r\n        MongoInserDto one = mongoTemplate.findOne(query, MongoInserDto.class);\r\n        System.out.println(\"查询单个耗时：---\" + (System.currentTimeMillis() - startTime));\r\n\r\n        long endTime = System.currentTimeMillis();\r\n        MongoInserDto byId = mongoTemplate.findById(\"61d810e24d098555bf86f5e0\", MongoInserDto.class);\r\n        System.out.println(\"byId查询耗时：---\" + (System.currentTimeMillis() - endTime));\r\n        // 按条件查询\r\n        long endTime2 = System.currentTimeMillis();\r\n        Query queryList = new Query();\r\n        queryList.addCriteria(Criteria.where(\"gropuId\").is(\"720581\"));\r\n        List<MongoInserDto> mongoInserDtos = mongoTemplate.find(queryList, MongoInserDto.class);\r\n        System.out.println(\"按条件查询耗时：---\" + (System.currentTimeMillis() - endTime2));\r\n\r\n        // 按条件查询\r\n        long endTime3 = System.currentTimeMillis();\r\n        Query queryList3 = new Query();\r\n        queryList3.addCriteria(Criteria.where(\"realData.tg.value\").is(\"81\"));\r\n        mongoTemplate.find(queryList3, MongoInserDto.class);\r\n        System.out.println(\"按条件查询耗时：---\" + (System.currentTimeMillis() - endTime3));\r\n\r\n        return Response.success();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/joggle/MonitorSecondJoggle.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/joggle/MonitorSecondJoggle.java	(date 1641894360257)
+@@ -6,6 +6,7 @@
+ import com.bmts.heating.commons.utils.restful.Response;
+ import com.bmts.heating.monitor.plugins.second.pojo.MongoInserDto;
+ import com.bmts.heating.monitor.plugins.second.pojo.MongoRoomDto;
++import com.bmts.heating.monitor.plugins.second.service.MongoService;
+ import com.bmts.heating.monitor.plugins.second.service.MonitorSecondService;
+ import io.swagger.annotations.Api;
+ import io.swagger.annotations.ApiOperation;
+@@ -41,6 +42,9 @@
+     @Autowired
+     private MonitorSecondService monitorSecondService;
+ 
++    @Autowired
++    private MongoService mongoService;
++
+     @PostMapping("/receive")
+     @ApiOperation("接收数据")
+     public Response receive(@RequestBody List<PointSecondDto> list) {
+@@ -157,4 +161,10 @@
+         return Response.success();
+     }
+ 
++    @GetMapping("/insertTdTest")
++    @ApiOperation("测试插入历史数据")
++    public Response insertTdTest() {
++        return Response.success(mongoService.insertTdHistory());
++    }
++
+ }
+Index: hnt-micro-service/hnt-service-application/hnt-application-bussiness-gatherSearch/hnt-bussiness-boot/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    id: 4545673453\r\n  profiles: dev\r\nmicro:\r\n  server:\r\n    host: gatherSearch\r\n    port: 32181\r\n    name: gatherSearch\r\n    tokens: 10000\r\n  pool:\r\n    maxTotal: 50  #池中的最大连接数\r\n    minIdle: 0    #最少的空闲连接数\r\n    maxIdle: 50    #最多的空闲连接数\r\n    maxWaitMillis: 1    #当连接池资源耗尽时,调用者最大阻塞的时间,超时时抛出异常 单位:毫秒数\r\n    lifo: true    #连接池存放池化对象方式,true放在空闲队列最前面,false放在空闲队列最后\r\n    blockWhenExhausted: true  #连接耗尽时是否阻塞,默认为true\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-application/hnt-application-bussiness-gatherSearch/hnt-bussiness-boot/src/main/resources/application-dev.yml	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-application/hnt-application-bussiness-gatherSearch/hnt-bussiness-boot/src/main/resources/application-dev.yml	(date 1639036458617)
+@@ -4,9 +4,9 @@
+   profiles: dev
+ micro:
+   server:
+-    host: gatherSearch
++    host: gatherSearch6
+     port: 32181
+-    name: gatherSearch
++    name: gatherSearch6
+     tokens: 10000
+   pool:
+     maxTotal: 50  #池中的最大连接数
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring:\r\n  application:\r\n    id: 5334536  #当前节点id\r\n    redundant_id: 7668769  #冗余节点id\r\n  profiles: dev\r\n\r\n  # 邮箱配置\r\n  mail:\r\n    # 配置 SMTP 服务器地址\r\n    host: smtp.263.net\r\n    # 发送者邮箱\r\n    username: devel@tscc.com.cn\r\n    # 配置密码，如果不走 SSL 加密，密码就可以\r\n    # 如果走 SSL 加密 ，而是申请到的授权码\r\n    password: Kf@1234\r\n    # SMTP\tsmtp.263.net\t25\t465\r\n    port: 25\r\n    # 默认的邮件编码为UTF-8\r\n    default-encoding: UTF-8\r\n    # 配置SSL 加密工厂\r\n  #    properties:\r\n  #      mail:\r\n  #        smtp:\r\n  #          socketFactoryClass: javax.net.ssl.SSLSocketFactory\r\n  #        #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误\r\n  #        debug: true\r\n\r\n\r\n\r\n  data:\r\n    mongodb:\r\n      uri: mongodb://admin:admin@10.0.31.32:27017/?authSource=admin\r\n      database: test\r\n      option:\r\n        socket-keep-alive: true\r\n        max-connection-idle-time: 60000\r\n        connect-timeout: 36000\r\n        min-connection-per-host: 5\r\n        threads-allowed-to-block-for-connection-multiplier: 5\r\n        max-wait-time: 120000\r\n        socket-timeout: 0\r\n        max-connection-life-time: 0\r\n        heartbeat-socket-timeout: 36000\r\n        heartbeat-connect-timeout: 36000\r\n        min-heartbeat-frequency: 5\r\n        heartbeat-frequency: 10\r\n\r\n\r\n\r\n\r\n\r\n\r\ngrpc:\r\n  server:\r\n    open: 1\r\n    host: monitor5\r\n    port: 6869\r\n    name: monitor5\r\n    #tokens: 6000\r\n\r\nmonitor:\r\n  patterns:\r\n    #    - model: JK\r\n    #      process: prototype\r\n    #      casenum: 2\r\n    - model: PVSS\r\n      process: prototype\r\n      casenum: 4\r\n  issue_queue: queue-monitor-issue   #监控任务下发队列\r\n  identity: master  #节点标识(主从)\r\n  #  send_queue_name: queue-monitor-monitor1-slave #投递队列\r\n  #  monitor_queue_name: queue-monitor-monitor1-master #监控队列\r\n  send_queue_name: queue-monitor-send-monitor64 #投递队列\r\n  monitor_queue_name: queue-monitor-monitor64-master #监控队列\r\ndriver:\r\n  plugins:\r\n    - model: PVSS\r\n      device_id: pvss-device-1  #设备ID\r\n      model_host: 10.0.1.222\r\n      model_port: 6000\r\n      #model_url: http://10.0.2.151:18090/data\r\n      model_url: http://100.1.2.1:18090/data   #  晋城项目外网采集地址\r\n      #model_url: http://100.1.2.12:18090/data      # 吉林项目采集地址\r\n      #      model_url: http://10.0.2.63:18091/data\r\n      issue_url: http://10.0.2.151:18090/setdata\r\n      model_count: 1\r\n      model_status: 0\r\n      pointls_sign: monitor100-pvss-0-5000   #对应点表标识\r\n      cycle_time: 10000    #循环采集周期(ms)\r\n      colony_policy: 1    #集群策略\r\n    - model: PVSS\r\n      device_id: pvss-device-2  #设备ID\r\n      model_host: 10.0.1.222\r\n      model_port: 6000\r\n      #model_url: http://10.0.2.151:18090/data\r\n      model_url: http://124.164.242.71:18090/data   #  晋城项目外网采集地址\r\n      #model_url: http://100.1.2.12:18090/data      # 吉林项目采集地址\r\n      #      model_url: http://10.0.2.63:18091/data\r\n      issue_url: http://10.0.2.151:18090/setdata\r\n      model_count: 1\r\n      model_status: 0\r\n      pointls_sign: monitor100-pvss-5001-10000   #对应点表标识\r\n      cycle_time: 10000    #循环采集周期(ms)\r\n      colony_policy: 1    #集群策略\r\n#    - model: PVSS\r\n#      device_id: boanrnosgfsg  #设备ID\r\n#      model_host: 10.0.1.111\r\n#      model_port: 5000\r\n#      model_url: http://10.0.1.101:5000/pvss/famg/id\r\n#      model_count: 1\r\n#      model_status: 0\r\n#      pointls_sign: fsgsefsg_001   #对应点表标识\r\n#      cycle_time: 8000    #循环采集周期(ms)\r\n#      colony_policy: 1    #集群策略\r\n#    - model: PVSS\r\n#      model_host: 10.0.1.121\r\n#      model_port: 5000\r\n#      model_url:\r\n#      model_count: 2\r\n#      model_status: 0\r\n#    - model: JK\r\n#      device_id: cn=Jk  #设备ID\r\n#      model_host: 10.0.2.66\r\n#      model_port: 5002\r\n#      model_url:\r\n#      issue_url:\r\n#      model_count: 1\r\n#      model_status: 0\r\n#      pointls_sign: monitor10_JK-0:50000   #对应点表标识\r\n#      cycle_time: 8000    #循环采集周期(ms)\r\n#      colony_policy: 1    #集群策略\r\n#    - model: JK\r\n#      model_host: 10.0.1.2\r\n#      model_port: 6000\r\n#      model_url:\r\n#      model_count: 2\r\n#      model_status: 0\r\n#    - model: JK\r\n#      model_host: 10.0.1.3\r\n#      model_port: 6000\r\n#      model_url:\r\n#      model_count: 3\r\n#      model_status: 0
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/resources/application-dev.yml	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/resources/application-dev.yml	(date 1641884992830)
+@@ -53,9 +53,9 @@
+ grpc:
+   server:
+     open: 1
+-    host: monitor5
++    host: monitor6
+     port: 6869
+-    name: monitor5
++    name: monitor6
+     #tokens: 6000
+ 
+ monitor:
+Index: hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/EnergyConsumptionClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.middleware.td;\r\n\r\nimport com.bmts.heating.commons.container.performance.annotation.Astrict;\r\nimport com.bmts.heating.commons.container.performance.config.ConnectionToken;\r\nimport com.bmts.heating.commons.container.performance.config.GrpcClientPool;\r\nimport com.bmts.heating.commons.container.performance.config.SavantServices;\r\nimport com.bmts.heating.commons.container.performance.exception.MicroException;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.energyConsumption.Datas;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.energyConsumption.InsertRequest;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.energyConsumption.PointValue;\r\nimport com.bmts.heating.commons.entiy.baseInfo.request.energyConsumption.Tag;\r\nimport com.bmts.heating.commons.grpc.lib.services.common.Common;\r\nimport com.bmts.heating.commons.grpc.lib.services.energyConsumption.EnergyHourGrpc;\r\nimport com.bmts.heating.commons.grpc.lib.services.energyConsumption.EnergyHourOuterClass;\r\nimport io.grpc.ManagedChannel;\r\nimport io.grpc.ManagedChannelBuilder;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.util.CollectionUtils;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n@Service\r\n@Slf4j\r\n@Astrict(servicename = \"td\",servicetype = Astrict.EnumService.grpc)\r\npublic class EnergyConsumptionClient extends SavantServices {\r\n\t@Autowired\r\n\tprivate GrpcClientPool grpcClientPool;\r\n\r\n\tpublic Boolean insertEnergyConsumption(InsertRequest insertRequest) {\r\n\t\tString serverName = \"td\";\r\n\t\tConnectionToken cd = null;\r\n\t\tManagedChannel serverChannel = null;\r\n\t\tEnergyHourGrpc.EnergyHourBlockingStub stub = null;\r\n\t\ttry {\r\n\t\t\tcd = super.getToken(serverName);\r\n//\t\t\tserverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();\r\n\t\t\tserverChannel = grpcClientPool.getManagedChannel(cd);\r\n\t\t\tstub = EnergyHourGrpc.newBlockingStub(serverChannel).withMaxInboundMessageSize(Integer.MAX_VALUE).withMaxOutboundMessageSize(Integer.MAX_VALUE);\r\n\t\t} catch (MicroException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t\tsuper.clearToken(serverName, e);\r\n\t\t} finally {\r\n\t\t\tsuper.backToken(serverName, cd);\r\n\t\t}\r\n\t\tlog.info(\"开始调用td服务\");\r\n\t\tCommon.BoolResult mls = stub.insert(this.insertEnergy(insertRequest));\r\n\t\tlog.info(\"调用td的insert得方法执行完成\");\r\n\t\tserverChannel.shutdown();\r\n\t\treturn mls.getIsOk();\r\n\t}\r\n\r\n\tpublic EnergyHourOuterClass.InsertRequest insertEnergy(InsertRequest insertRequest) {\r\n\t\tEnergyHourOuterClass.InsertRequest.Builder builder = EnergyHourOuterClass.InsertRequest.newBuilder();\r\n\t\tbuilder.setTableName(insertRequest.getTableName());\r\n\t\tbuilder.setStableName(insertRequest.getStableName());\r\n\t\tbuilder.setTag(insertTag(insertRequest.getTag()));\r\n\t\tbuilder.setStartTime(insertRequest.getStartTime());\r\n\t\tbuilder.setEndTime(insertRequest.getEndTime());\r\n\t\tList<Datas> datasList = insertRequest.getDatasList();\r\n\t\tList<EnergyHourOuterClass.Data> data = new ArrayList<>();\r\n\t\tfor (Datas datas : datasList) {\r\n\t\t\t data = insertData(insertRequest.getDatasList(),datas.getPointValues());\r\n\t\t}\r\n\t\tbuilder.addAllData(data);\r\n\t\treturn builder.build();\r\n\t}\r\n\r\n\tpublic List<EnergyHourOuterClass.PointValue> insertPointValue(List<PointValue> pointValueList) {\r\n\t\tList<EnergyHourOuterClass.PointValue> res=new ArrayList<>();\r\n\t\tif (!CollectionUtils.isEmpty(pointValueList)){\r\n\t\t\tfor (PointValue value : pointValueList) {\r\n\t\t\t\tEnergyHourOuterClass.PointValue.Builder pointValue = EnergyHourOuterClass.PointValue.newBuilder();\r\n\t\t\t\tpointValue.setName(value.getName());\r\n\t\t\t\tpointValue.setValue(value.getValue());\r\n\t\t\t\tres.add(pointValue.build());\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\tpublic EnergyHourOuterClass.Tag insertTag(Tag tags) {\r\n\t\tEnergyHourOuterClass.Tag.Builder tag = EnergyHourOuterClass.Tag.newBuilder();\r\n\t\tif (tags != null){\r\n\t\t\ttag.setGroupId(tags.getGroupId());\r\n\t\t\ttag.setLevel(tags.getLevel());\r\n\t\t}\r\n\t\treturn tag.build();\r\n\t}\r\n\r\n\tpublic  List<EnergyHourOuterClass.Data>\tinsertData(List<Datas> datas,List<PointValue> pointValueList) {\r\n\t\tList<EnergyHourOuterClass.Data> res = new ArrayList<>();\r\n\t\tif (!CollectionUtils.isEmpty(datas)){\r\n\t\t\tList<EnergyHourOuterClass.PointValue> pointValue = insertPointValue(pointValueList);\r\n\t\t\tfor (Datas data1 : datas) {\r\n\t\t\t\tEnergyHourOuterClass.Data.Builder data = EnergyHourOuterClass.Data.newBuilder();\r\n\t\t\t\tdata.setTs(data1.getTs());\r\n\t\t\t\tdata.addAllPoint(pointValue);\r\n\t\t\t\tres.add(data.build());\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/EnergyConsumptionClient.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-middleware/hnt-middleware-grpc-td/src/main/java/com/bmts/heating/middleware/td/EnergyConsumptionClient.java	(date 1641885404938)
+@@ -2,7 +2,7 @@
+ 
+ import com.bmts.heating.commons.container.performance.annotation.Astrict;
+ import com.bmts.heating.commons.container.performance.config.ConnectionToken;
+-import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
++//import com.bmts.heating.commons.container.performance.config.GrpcClientPool;
+ import com.bmts.heating.commons.container.performance.config.SavantServices;
+ import com.bmts.heating.commons.container.performance.exception.MicroException;
+ import com.bmts.heating.commons.entiy.baseInfo.request.energyConsumption.Datas;
+@@ -26,8 +26,8 @@
+ @Slf4j
+ @Astrict(servicename = "td",servicetype = Astrict.EnumService.grpc)
+ public class EnergyConsumptionClient extends SavantServices {
+-	@Autowired
+-	private GrpcClientPool grpcClientPool;
++//	@Autowired
++//	private GrpcClientPool grpcClientPool;
+ 
+ 	public Boolean insertEnergyConsumption(InsertRequest insertRequest) {
+ 		String serverName = "td";
+@@ -36,8 +36,8 @@
+ 		EnergyHourGrpc.EnergyHourBlockingStub stub = null;
+ 		try {
+ 			cd = super.getToken(serverName);
+-//			serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
+-			serverChannel = grpcClientPool.getManagedChannel(cd);
++			serverChannel = ManagedChannelBuilder.forAddress(cd.getHost(), Integer.valueOf(cd.getPort())).usePlaintext().build();
++//			serverChannel = grpcClientPool.getManagedChannel(cd);
+ 			stub = EnergyHourGrpc.newBlockingStub(serverChannel).withMaxInboundMessageSize(Integer.MAX_VALUE).withMaxOutboundMessageSize(Integer.MAX_VALUE);
+ 		} catch (MicroException e) {
+ 			e.printStackTrace();
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/java/com/bmts/heating/monitor/boot/app/MonitorApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bmts.heating.monitor.boot.app;\r\n\r\nimport com.bmts.heating.commons.basement.model.db.entity.AlarmReal;\r\nimport com.bmts.heating.commons.db.service.AlarmRealService;\r\nimport com.bmts.heating.commons.db.service.second.PointConfigSecondService;\r\nimport com.bmts.heating.commons.heartbeat.adapter.handler.monitor.HeartBeatMonitorClientServer;\r\nimport com.bmts.heating.commons.redis.service.RedisEnergyPointService;\r\nimport com.bmts.heating.commons.utils.container.SpringBeanFactory;\r\nimport com.bmts.heating.commons.utils.msmq.PointL;\r\nimport com.bmts.heating.middleware.cache.services.RedisCacheService;\r\nimport com.bmts.heating.monitor.boot.service.MonitorHistoryService;\r\nimport com.bmts.heating.monitor.boot.service.RealService;\r\nimport com.bmts.heating.monitor.dirver.adapter.ConstructionGenerator;\r\nimport com.bmts.heating.monitor.dirver.common.MonitorTaskUtils;\r\nimport com.bmts.heating.monitor.dirver.common.ReloadComputation;\r\nimport com.bmts.heating.monitor.dirver.config.MonitorMuster;\r\nimport com.bmts.heating.monitor.dirver.config.MonitorProtery;\r\nimport com.bmts.heating.monitor.dirver.config.MonitorType;\r\nimport com.bmts.heating.monitor.dirver.process.GuardMonitorProcess;\r\nimport com.bmts.heating.monitor.plugins.pvss.constructors.pvssUtil.Computation;\r\nimport com.bmts.heating.monitor.plugins.pvss.constructors.service.PVSSCommonService;\r\nimport com.spring4all.mongodb.EnableMongoPlus;\r\nimport org.mybatis.spring.annotation.MapperScan;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.boot.CommandLineRunner;\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.scheduling.annotation.EnableAsync;\r\nimport org.springframework.util.CollectionUtils;\r\n\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\n@EnableMongoPlus\r\n@MapperScan(\"com.bmts.heating.commons.db.mapper\")\r\n@SpringBootApplication(scanBasePackages = {\"com.bmts.heating\"})\r\n@EnableAsync\r\n//@EnableJms    //启动消息队列\r\npublic class MonitorApplication implements CommandLineRunner {\r\n\r\n    private Logger LOGGER = LoggerFactory.getLogger(MonitorApplication.class);\r\n\r\n    @Autowired\r\n    private MonitorType monitorType;\r\n    @Autowired\r\n    private HeartBeatMonitorClientServer heartBeatMonitorClientServer;\r\n\r\n    @Autowired\r\n    private GuardMonitorProcess GuardMonitorProcess;\r\n\r\n    @Autowired\r\n    private MonitorTaskUtils monitorTaskUtils;\r\n\r\n    @Autowired\r\n    private RedisCacheService redisCacheService;\r\n\r\n    @Autowired\r\n    private Computation computation;\r\n\r\n    @Autowired\r\n    private MonitorHistoryService historyService;\r\n    @Autowired\r\n    private RealService realService;\r\n\r\n    //@Autowired\r\n    //private DeviceHistoryService deviceHistoryService;\r\n    //@Autowired\r\n    //private SecondDataMapService secondDataMapService;\r\n    @Autowired\r\n    private PointConfigSecondService pointConfigSecondService;\r\n    //@Autowired\r\n    //private SecondPointConfig secondPointConfig;\r\n\r\n    @Autowired\r\n    private AlarmRealService alarmRealService;\r\n\r\n    @Autowired\r\n    private PVSSCommonService pvssCommonService;\r\n\r\n    @Autowired\r\n    private ReloadComputation reloadComputation;\r\n\r\n    @Autowired\r\n    private RedisEnergyPointService redisEnergyPointService;\r\n\r\n    public static void main(String[] args) {\r\n        SpringApplication.run(MonitorApplication.class, args);\r\n    }\r\n\r\n    @Override\r\n    public void run(String... args) throws Exception {\r\n\r\n        LOGGER.info(\"当前服务节点为{}节点,开启采集任务................\", monitorType.getIdentity());\r\n        //开启监控守护进程,监控冗余服务器传递任务\r\n        LOGGER.info(\"当前服务节点{}开启监控守护线程,监控冗余服务器传递任务......................\", monitorType.getIdentity());\r\n        //new Thread(new RunWorkEntranceImpl(guardMonitorMqProcess)).start();\r\n        //启动守护线程\r\n        GuardMonitorProcess.consume();\r\n\r\n        //启动心跳\r\n        heartBeatMonitorClientServer.start();\r\n\r\n\r\n        //获取所有可执行的任务实例\r\n        List<MonitorProtery> mplist = monitorTaskUtils.getRunMonitorProtery();\r\n        // 只加载 处理 pvss\r\n        for (MonitorProtery mp : mplist) {\r\n            if (Objects.equals(mp.getPattern().getModel(), \"PVSS\")) {\r\n                List<MonitorMuster.Plugin> pluginList = mp.getPluginList();\r\n                pluginList.stream().forEach(e -> {\r\n                    // 加载点表数据\r\n                    List<List<PointL>> cachePoints = pvssCommonService.getCachePoints(e.getDevice_id());\r\n                    if (cachePoints != null) {\r\n                        reloadComputation.setMonitorMap(e.getDevice_id(), cachePoints);\r\n                    }\r\n                });\r\n            }\r\n        }\r\n\r\n        // 加载计算量  调用 grpc 服务\r\n        List<PointL> pointLS = redisCacheService.queryComputePoints();\r\n        if (!CollectionUtils.isEmpty(pointLS)) {\r\n            for (PointL pl : pointLS) {\r\n                pl.setDataType(1);\r\n            }\r\n            computation.setMap(pointLS);\r\n        }\r\n        // 加载二网点配置数据\r\n        //List<PointConfigSecondDto> secondPointList = pointConfigSecondService.secondQueryPoint(new QueryWrapper());\r\n        //if (!CollectionUtils.isEmpty(secondPointList)) {\r\n        //    secondPointConfig.setMap(secondPointList);\r\n        //}\r\n\r\n        // 加载实时报警数据 进入Map\r\n        List<AlarmReal> alarmRealList = alarmRealService.list();\r\n        computation.setAlarmRealMap(alarmRealList);\r\n\r\n        // 加载 热源的  能耗点 的实时库数据\r\n        List<PointL> energyPoints = redisEnergyPointService.cacheSourceEnery();\r\n        computation.setEneryMap(energyPoints);\r\n\r\n        // 初始化所有可执行的任务实例\r\n        for (MonitorProtery mp : mplist) {\r\n            //启动处理插件\r\n            ConstructionGenerator constructionGenerator = (ConstructionGenerator) SpringBeanFactory.getBean(mp.getPattern().getModel());\r\n            constructionGenerator.init(mp);\r\n        }\r\n\r\n\r\n        //realService.consume();\r\n        //historyService.consume();\r\n        //deviceHistoryService.consume();\r\n        //secondDataMapService.consume();\r\n\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/java/com/bmts/heating/monitor/boot/app/MonitorApplication.java	(revision f2f83a08aaa5ac070978ffcbdb9448446ee81a53)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-boot/src/main/java/com/bmts/heating/monitor/boot/app/MonitorApplication.java	(date 1641895361486)
+@@ -103,21 +103,21 @@
+         heartBeatMonitorClientServer.start();
+ 
+ 
+-        //获取所有可执行的任务实例
+-        List<MonitorProtery> mplist = monitorTaskUtils.getRunMonitorProtery();
+-        // 只加载 处理 pvss
+-        for (MonitorProtery mp : mplist) {
+-            if (Objects.equals(mp.getPattern().getModel(), "PVSS")) {
+-                List<MonitorMuster.Plugin> pluginList = mp.getPluginList();
+-                pluginList.stream().forEach(e -> {
+-                    // 加载点表数据
+-                    List<List<PointL>> cachePoints = pvssCommonService.getCachePoints(e.getDevice_id());
+-                    if (cachePoints != null) {
+-                        reloadComputation.setMonitorMap(e.getDevice_id(), cachePoints);
+-                    }
+-                });
+-            }
+-        }
++//        //获取所有可执行的任务实例
++//        List<MonitorProtery> mplist = monitorTaskUtils.getRunMonitorProtery();
++//        // 只加载 处理 pvss
++//        for (MonitorProtery mp : mplist) {
++//            if (Objects.equals(mp.getPattern().getModel(), "PVSS")) {
++//                List<MonitorMuster.Plugin> pluginList = mp.getPluginList();
++//                pluginList.stream().forEach(e -> {
++//                    // 加载点表数据
++//                    List<List<PointL>> cachePoints = pvssCommonService.getCachePoints(e.getDevice_id());
++//                    if (cachePoints != null) {
++//                        reloadComputation.setMonitorMap(e.getDevice_id(), cachePoints);
++//                    }
++//                });
++//            }
++//        }
+ 
+         // 加载计算量  调用 grpc 服务
+         List<PointL> pointLS = redisCacheService.queryComputePoints();
+@@ -142,11 +142,11 @@
+         computation.setEneryMap(energyPoints);
+ 
+         // 初始化所有可执行的任务实例
+-        for (MonitorProtery mp : mplist) {
+-            //启动处理插件
+-            ConstructionGenerator constructionGenerator = (ConstructionGenerator) SpringBeanFactory.getBean(mp.getPattern().getModel());
+-            constructionGenerator.init(mp);
+-        }
++//        for (MonitorProtery mp : mplist) {
++//            //启动处理插件
++//            ConstructionGenerator constructionGenerator = (ConstructionGenerator) SpringBeanFactory.getBean(mp.getPattern().getModel());
++//            constructionGenerator.init(mp);
++//        }
+ 
+ 
+         //realService.consume();
+Index: hnt-commons-component/hnt-commons-entiy/src/main/java/com/bmts/heating/commons/entiy/baseInfo/request/tdengine/SecondNetDataMinuteDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-commons-component/hnt-commons-entiy/src/main/java/com/bmts/heating/commons/entiy/baseInfo/request/tdengine/SecondNetDataMinuteDto.java	(date 1641956018261)
++++ hnt-commons-component/hnt-commons-entiy/src/main/java/com/bmts/heating/commons/entiy/baseInfo/request/tdengine/SecondNetDataMinuteDto.java	(date 1641956018261)
+@@ -0,0 +1,20 @@
++package com.bmts.heating.commons.entiy.baseInfo.request.tdengine;
++
++import io.swagger.annotations.ApiModelProperty;
++import lombok.Data;
++
++import java.util.List;
++
++@Data
++public class SecondNetDataMinuteDto {
++    @ApiModelProperty("超级表名称")
++    private String stableName;
++    @ApiModelProperty("子表名称")
++    private String tableName;
++    @ApiModelProperty("时间戳")
++    private long ts;
++    @ApiModelProperty("点位信息")
++    List<PointInfo> points;
++    @ApiModelProperty("设备标签信息")
++    List<PointInfo> tags;
++}
+Index: hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/proto/tdengine/meta.proto
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/proto/tdengine/meta.proto	(date 1641955074314)
++++ hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/proto/tdengine/meta.proto	(date 1641955074314)
+@@ -0,0 +1,23 @@
++syntax = "proto3";
++
++import "common/common.proto";
++option java_package = "com.bmts.heating.commons.grpc.lib.services.tdengine";
++
++service Meta{
++  rpc insert(Request) returns (BoolResult){}
++}
++
++message Request{
++  repeated TableInfo devices = 1;
++}
++message TableInfo{
++  string stableName = 1;
++  string tableName = 2;
++  int64 ts = 3;
++  repeated PointData points = 4;
++  repeated PointData tags = 5;
++}
++message PointData{
++  string pointName = 1;
++  string pointValue = 2;
++}
+\ No newline at end of file
+Index: hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/pojo/CommunityQueryDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/pojo/CommunityQueryDto.java	(date 1641895949513)
++++ hnt-micro-service/hnt-service-monitor/hnt-monitor-plugins/hnt-monitor-plugins-second/src/main/java/com/bmts/heating/monitor/plugins/second/pojo/CommunityQueryDto.java	(date 1641895949513)
+@@ -0,0 +1,18 @@
++package com.bmts.heating.monitor.plugins.second.pojo;
++
++import com.alibaba.fastjson.JSONObject;
++import lombok.Data;
++import org.springframework.data.annotation.Id;
++import org.springframework.data.mongodb.core.mapping.Document;
++import org.springframework.data.mongodb.core.mapping.Field;
++
++import java.util.Map;
++
++@Data
++//@Document("community")
++public class CommunityQueryDto {
++    @Id
++    private String id;
++    @Field("devices")
++    private Map<String,Map> devices;
++}
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/HistoryMinuteOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/HistoryMinuteOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryPointsGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryPointsGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryAggregateGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryAggregateGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryPointsOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryPointsOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryAggregateOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/QueryAggregateOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/HistoryMinuteGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/tdengine/HistoryMinuteGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/elasticsearch/ElasticsearchGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/elasticsearch/ElasticsearchGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/elasticsearch/ElasticsearchOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/elasticsearch/ElasticsearchOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/energyConsumption/EnergyHourOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/energyConsumption/EnergyHourOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/energyConsumption/EnergyHourGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/energyConsumption/EnergyHourGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/netpoint/NetPointOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/netpoint/NetPointOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/netpoint/NetPointGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/netpoint/NetPointGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/method/ExecuteMethodGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/method/ExecuteMethodGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/method/ExecuteMethodOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/method/ExecuteMethodOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/points/PointOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/points/PointOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Monitor/MonitorOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Monitor/MonitorOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/points/PointGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/points/PointGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Monitor/MonitorGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Monitor/MonitorGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Pattern/PatternGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Pattern/PatternGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Pattern/PatternOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/Pattern/PatternOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/abnormal/AbnormalOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/abnormal/AbnormalOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/abnormal/AbnormalGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/abnormal/AbnormalGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/cache/CacheGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/cache/CacheGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/cache/CacheOuterClass.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/cache/CacheOuterClass.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/table/TableService.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/table/TableService.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/table/TableOptGrpc.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/table/TableOptGrpc.java
+diff --git hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/common/Common.java hnt-commons-component/hnt-commons-grpc-lib/src/main/java/com/bmts/heating/commons/grpc/lib/services/common/Common.java

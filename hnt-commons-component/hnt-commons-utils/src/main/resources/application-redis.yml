@@ -1,0 +1,31 @@
+spring:
+  redis:
+    cluster:
+      nodes:
+        - server1:6379
+        - server1:6380
+        - server2:6379
+        - server2:6380
+        - server3:6379
+        - server3:6380
+    database: 0
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 10000
+        max-wait: 1000
+        max-idle: 100
+        min-idle: 50
+        time-between-eviction-runs: 1000
+    password: Tscc@1234
+
+
+#    host: server1
+#    port: 6379
+#    timeout: 30
+#    # password:
+#    pool:
+#      minIdle: 1
+#      maxIdle: 10
+#      maxWait: 3
+#      maxActive: 8

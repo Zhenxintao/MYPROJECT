@@ -1,0 +1,19 @@
+consul:
+  server:
+    consul_host: server1
+    consul_port: 8500
+    #user: root
+    #password: jupiter
+  services:
+    center_url: root/governance
+    grpc_url: root/services/grpc
+    monitor_url: root/services/monitor
+    application_url: root/services/application
+    web_url: root/services/web
+    topic_url: root/kafka/topics
+    lock: root/services/lock
+    tokenBorrow: root/services/borrow
+  colony:
+    ckafka: root/colony/kafka
+    creids: root/colony/redis
+    cel: root/colonys/el

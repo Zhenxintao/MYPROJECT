@@ -1,0 +1,88 @@
+ <project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hnt-web-modules</artifactId>
+        <groupId>com.bmts.heating</groupId>
+        <version>2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <version>2.0</version>
+    <artifactId>hnt-web-auth</artifactId>
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-web-config</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-config-web</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-jwt</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-utils</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bmts.heating</groupId>
+            <artifactId>hnt-commons-auth</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.70</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.12.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.bmts.heating.web.auth.app.AuthApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <finalName>auth</finalName>
+    </build>
+</project>

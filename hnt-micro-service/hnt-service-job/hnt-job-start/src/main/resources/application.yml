@@ -1,0 +1,7 @@
+server:
+  port: 6789
+spring:
+  profiles:
+    active: ${package.environment}
+  application:
+    name: application_job

@@ -1,0 +1,10 @@
+server:
+  port: 32181
+spring:
+  application:
+    name: gather_search
+
+  profiles:
+    active: ${package.environment}
+
+

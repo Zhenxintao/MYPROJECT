@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "RealData.Entry.Grpc";
+
+package netpoint;
+
+// The greeting service definition.}
+service NetPoint{
+    rpc Push(NetPointL)returns(Result);
+}
+message Result {
+    bool isSuccess=1;
+	string code = 2;
+	string msg = 3;	
+}
+message NetPointL {
+	int32 pointId = 1;
+	string pointName = 2;
+	string pointAddress = 3;
+	int32 type = 4;
+	string deviceId = 5;
+	string pointlsSign = 6;
+	string oldValue = 7;
+	string value = 8;
+	uint64 timeStrap = 9;
+	int32 qualityStrap = 10;
+	int32 heatingSystemId = 11;
+	repeated int32 washArray = 12;
+	string units = 13;
+	string orderValue = 14;
+	int32 dataType = 15;
+	string expandDesc = 16;
+	repeated int32 washDArray = 17;
+	string applicationName = 18;
+}
+

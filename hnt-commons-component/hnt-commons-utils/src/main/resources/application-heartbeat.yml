@@ -1,0 +1,18 @@
+heartbeat:
+  elements:
+    - heartBeatType: GRPC
+      heartBeatCycle: 30
+      heartBeatPort: 8888
+      valid: true
+    - heartBeatType: MONITOR
+      heartBeatCycle: 30
+      heartBeatPort: 7777
+      valid: true
+    - heartBeatType: APPLICATION
+      heartBeatCycle: 30
+      heartBeatPort: 9999
+      valid: true
+    - heartBeatType: WEB
+      heartBeatCycle: 30
+      heartBeatPort: 6666
+      valid: true

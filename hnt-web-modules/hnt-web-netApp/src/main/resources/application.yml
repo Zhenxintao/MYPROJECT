@@ -1,0 +1,15 @@
+server:
+  port: 7070
+#spring:
+#  profiles:
+#    include: mysql
+spring:
+  application:
+    name: application_netApp
+    id: 87652345
+micro:
+  server:
+    host: 10.0.16.100
+    port: 7070
+    name: netApp_1
+    tokens: 10000

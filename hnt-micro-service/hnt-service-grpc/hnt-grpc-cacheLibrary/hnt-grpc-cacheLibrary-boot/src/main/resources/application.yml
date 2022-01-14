@@ -1,0 +1,10 @@
+server:
+  port: 8059
+spring:
+  application:
+    name: cache-grpc-server
+  profiles:
+    active: ${package.environment}
+
+
+

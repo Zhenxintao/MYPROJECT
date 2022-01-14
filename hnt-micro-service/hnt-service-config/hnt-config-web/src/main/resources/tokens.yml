@@ -1,0 +1,4 @@
+tokens:
+  serviceType: web
+  increment: 1000
+  circle: 3000

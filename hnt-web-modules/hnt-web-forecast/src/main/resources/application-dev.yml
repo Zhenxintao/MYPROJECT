@@ -1,0 +1,10 @@
+spring:
+  application:
+    id: 623451231312123
+  profiles: dev
+micro:
+  server:
+    host: forecast
+    port: 6905
+    name: forecast
+    tokens: 50

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.tdengine";
+
+service HistoryMinute{
+  rpc insert(Body) returns (BoolResult){}
+}
+
+message Body{
+  repeated Device devices = 1;
+}
+message Device{
+  string deviceCode = 1;
+  int32 groupId = 2;
+  int32 level = 3;
+  int64 ts = 4;
+  repeated PointInfo points = 5;
+  int32 id = 6;
+  string tableName = 7;
+}
+message PointInfo{
+  string pointName = 1;
+  string pointValue = 2;
+}

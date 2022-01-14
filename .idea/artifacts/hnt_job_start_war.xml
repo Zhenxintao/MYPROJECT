@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-job-start:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-job/hnt-job-start/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-job-start</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="job.war">
+      <element id="artifact" artifact-name="hnt-job-start:war exploded" />
+    </root>
+  </artifact>
+</component>

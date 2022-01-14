@@ -1,0 +1,2 @@
+signalr:
+  server_urls: ws://signalr/RealValueHub

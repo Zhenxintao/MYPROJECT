@@ -1,0 +1,6 @@
+weatherforecast:
+  serverUrl: 10.0.31.5:5001
+  register: api/register
+  logout: api/register/un
+  error: api/Error?url=
+  citycode: 101010100

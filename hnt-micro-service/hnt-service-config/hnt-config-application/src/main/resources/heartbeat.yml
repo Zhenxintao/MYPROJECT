@@ -1,0 +1,11 @@
+heartbeat:
+  heartBeatHost: governance1,governance2,governance3
+#  heartBeatHost: governance1
+  #  heartBeatHost: 10.0.2.100
+  #  heartBeatHost: 10.0.31.32
+  heartBeatPort: 9999
+  heartBeatTpye: APPLICATION
+  heartBeatCycle: 5
+  outTime: 9
+  retries: 10
+  retryTime: 2

@@ -1,0 +1,7 @@
+server:
+  port: 6885
+spring:
+  profiles:
+    active: dev
+
+

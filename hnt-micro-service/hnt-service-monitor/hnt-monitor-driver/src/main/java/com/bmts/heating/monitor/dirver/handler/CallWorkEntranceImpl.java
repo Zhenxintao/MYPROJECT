@@ -1,0 +1,24 @@
+package com.bmts.heating.monitor.dirver.handler;
+
+import com.bmts.heating.commons.utils.msmq.PointL;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+
+public class CallWorkEntranceImpl implements Callable<Object> {
+
+    private IWorkEntrance iWorkEntrance;
+    private List<PointL> taskArray;
+    private int flag;
+
+    public CallWorkEntranceImpl(IWorkEntrance iWorkEntrance, List<PointL> taskArray, int flag){
+        this.iWorkEntrance=iWorkEntrance;
+        this.taskArray=taskArray;
+        this.flag=flag;
+    }
+
+    @Override
+    public Object call() throws Exception {
+        return iWorkEntrance.invokeForBack(taskArray, flag);
+    }
+}

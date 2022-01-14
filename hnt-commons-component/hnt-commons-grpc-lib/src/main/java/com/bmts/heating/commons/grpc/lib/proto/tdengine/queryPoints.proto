@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_package = "com.bmts.heating.commons.grpc.lib.services.tdengine";
+
+service QueryPoints{
+  rpc queryOriginal(QueryList) returns(stream Response){}
+}
+message QueryList{
+  int64 startTime = 1;
+  int64 endTime = 2;
+  int32 level = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+  repeated string points = 6;
+  repeated int32 groupid = 7;
+  string tableName = 8;
+  Original original = 9;
+  QueryType queryType = 10;
+  string order = 11;
+  int32 abnormalType = 12;
+}
+enum QueryType{
+  history = 0;
+  energy = 1;
+  abnormal_query = 2;
+}
+enum Original{
+  minute = 0;
+  Hour = 1;
+  Day = 2;
+}
+message Response{
+  int32 total = 1;
+  string jsonData = 2;
+  string error = 3;
+}
+

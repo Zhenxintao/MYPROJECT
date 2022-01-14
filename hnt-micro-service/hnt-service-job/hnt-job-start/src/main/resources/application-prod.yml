@@ -1,0 +1,17 @@
+spring:
+  application:
+    id: 6212312331
+  profiles: prod
+micro:
+  server:
+    host: job
+    port: 6789
+    name: job
+    tokens: 50
+
+
+transport:
+  # 长输 采集数据接口
+  serverUrl: http://100.1.2.1:9567/data
+  # 长输 历史数据接口
+  historyUrl: http://second:8091/redis/history

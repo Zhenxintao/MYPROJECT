@@ -1,0 +1,14 @@
+spring:
+  application:
+    id: 623451123123
+  profiles: prod
+micro:
+  server:
+    host: auth
+    port: 6902
+    name: auth
+    tokens: 50
+sso:
+  host: sso
+  logPort: 9999
+  tokenPort: 8056

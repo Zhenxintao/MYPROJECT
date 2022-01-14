@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+import "point/point.proto";
+import "google/protobuf/empty.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.cache";
+
+service Cache {
+  rpc  queryAllPoint(PointsParam)  returns(PointList){}
+  rpc  queryFirstNetBase(google.protobuf.Empty) returns(FirstNetBaseList){}
+  rpc  querySourceFirstNetBase(google.protobuf.Empty) returns(FirstNetBaseList){}
+  rpc queryPoints(queryPointsParam) returns(stream PointList);
+  rpc queryComputePoints(google.protobuf.Empty) returns(PointList){}
+  rpc queryRealDataBySystem(PointParam) returns(PointCacheList){}
+  rpc queryRankInterval(RankIntervalParam) returns(RankList){}
+  rpc queryRank(RankIntervalParam) returns(RankList){}
+  rpc queryPointsByIds(queryPointsByIdsDto) returns(PointsByIdsResults){}
+  rpc querySourcePoints(google.protobuf.Empty) returns(stream PointList);
+}
+message queryPointsByIdsDto
+{
+  repeated int32 relevanceId = 1;
+  int32 level = 2;
+}
+message PointsByIdsResults
+{
+  repeated PointsByIdItem pointsByIdItem = 1;
+}
+message PointsByIdItem
+{
+  int32 id = 1;
+  repeated string pointName = 2;
+}
+message RankList
+{
+  int64 total = 1;
+  repeated RankItem rankItem = 2;
+}
+message RankItem
+{
+  int32 id = 1;
+  double value = 2;
+}
+message RankNotIntervalParam
+{
+  string pointName = 1;
+  int32 length = 2;
+  bool isAsc = 3;
+  int32 level = 4;
+}
+message RankIntervalParam
+{
+  string pointName = 1;
+  double startValue = 2;
+  double endValue = 3;
+  int32 length = 4;
+  bool isAsc = 5;
+  int32 level = 6;
+}
+message PointParam
+{
+  repeated PointParamItem pointParamItem = 1;
+  bool mapPointConfig = 2;
+
+}
+message PointParamItem
+{
+  repeated string pointNames = 1;
+  int32 id = 2;
+  int32 level = 3;
+}
+message pointCompute
+{
+  repeated string pointName = 1;
+}
+message queryPointsParam
+{
+  string deviceId = 1;
+}
+message search
+{
+  int32 pageIndex = 1;
+  int32 pageCount = 2;
+  string sortName = 3;
+  string sortType = 4;
+}
+message FirstNetBaseList
+{
+  repeated FirstNetBase firstNetBase = 1;
+}
+message FirstNetBase
+{
+  int32 heatNetId = 1;
+  string heatNetName = 2;
+  double heatNetArea = 3;
+  int32 heatNetOrgId = 4;
+  string heatNetOrgName = 5;
+  int32 heatSourceId = 6;
+  string  heatSourceName = 7;
+  double heatSourceArea = 8;
+  int32  heatSourceOrgId = 9;
+  string heatSourceOrgName = 10;
+  int32 heatTransferStationId = 11;
+  string heatTransferStationName = 12;
+  double heatStationArea = 13;
+  double heatStationNetArea = 14;
+  int32 heatStationOrgId = 15;
+  string heatStationOrgName = 16;
+  int32 heatCabinetId = 17;
+  string heatCabinetName = 18;
+  string heatSystemName = 19;
+  double heatSystemArea = 20;
+  int32 heatSystemId = 21;
+  bool status = 22;
+}
+message PointsParam {
+  string deviceId = 1;
+  int32 start = 2;
+  int32 end = 3;
+}
+message Points{
+  repeated  string pointId = 1;
+}

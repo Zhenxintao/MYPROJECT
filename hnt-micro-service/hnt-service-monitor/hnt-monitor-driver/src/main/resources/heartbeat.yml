@@ -1,0 +1,9 @@
+heartbeat:
+  #heartBeatHost: 10.0.16.100
+  heartBeatHost: governance1,governance2,governance3
+  heartBeatPort: 7777
+  heartBeatTpye: MONITOR
+  heartBeatCycle: 5
+  outTime: 9
+  retries: 10
+  retryTime: 2

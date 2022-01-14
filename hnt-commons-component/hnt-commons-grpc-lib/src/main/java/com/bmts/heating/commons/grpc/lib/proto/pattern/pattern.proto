@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.Pattern";
+
+service Pattern {
+    rpc ListFeatures ( Rectangle) returns (stream  Feature) {}
+}
+
+message Rectangle {
+    int32 pid = 1;
+    string pname = 2;
+    string address = 3;
+}
+message Feature {
+    int32 location = 1;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Heating-Net-Platform</artifactId>
+        <groupId>com.bmts.heating</groupId>
+        <version>2.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <version>2.0</version>
+    <modules>
+        <module>hnt-commons-auth</module>
+        <module>hnt-commons-basement</module>
+        <module>hnt-commons-cache-lib</module>
+        <module>hnt-commons-db</module>
+        <module>hnt-commons-entiy</module>
+        <module>hnt-commons-grpc-lib</module>
+        <module>hnt-commons-history-lib</module>
+        <module>hnt-commons-jwt</module>
+        <module>hnt-commons-utils</module>
+        <module>hnt-commons-compute</module>
+        <module>hnt-commons-logs</module>
+<!--        <module>hnt-commons-container</module>-->
+    </modules>
+    <artifactId>hnt-commons-component</artifactId>
+
+
+</project>

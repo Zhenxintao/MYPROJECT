@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+option java_package = "com.bmts.heating.commons.grpc.lib.services.points";
+
+service Point {
+  rpc GetEntity (PointList) returns (ResStatus) {}
+
+  rpc MessageIssue (PointIssueList) returns (Result) {}
+
+  rpc MonitorIssue (PointIssueList) returns (Result) {}
+}
+
+message PointL {
+  int32 pointId = 1;
+  string pointName = 2;
+  string pointAddress = 3;
+  int32 type = 4;
+  string deviceId = 5;
+  string pointlsSign = 6;
+  string oldValue = 7;
+  string value = 8;
+  uint64 timeStrap = 9;
+  int32 qualityStrap = 10;
+  int32 relevanceId = 11;
+  repeated int32 washArray = 12;
+  string units = 13;
+  string orderValue = 14;
+  int32 dataType = 15;
+  string expandDesc = 16;
+  repeated int32 washDArray = 17;
+  string applicationName = 18;
+  int32 level = 19;
+  string expression = 20;
+  int32 number = 21;
+  string hightLower = 22;
+  int32 pointConfig = 23;
+
+  string systemNum = 24;
+  int32 parentSyncNum = 25;
+
+  string pointStandardName = 26;
+
+  string  equipmentCode = 27;
+  int32 heatType = 28;
+  string syncNumber = 29;
+
+  int32 grade=30;
+  string alarmDesc = 31;
+
+}
+message PointList {
+  repeated PointL plist = 1;
+  string systemType = 2;
+  int32 total = 3;
+}
+message ResStatus {
+  bool status = 1;
+}
+
+message MessagePointIssue{
+  string applicationName = 1;
+  string deviceId = 2;
+  uint64 validTimeStamp = 3;
+  repeated PointL pointLS = 4;
+}
+
+message PointIssueList{
+  repeated MessagePointIssue mpilist = 1;
+}
+
+message Result {
+  string code = 1;
+  string msg = 2;
+  repeated MessagePointIssue reslist = 3;
+}
+message PointCacheList
+{
+  repeated PointCache plist = 1;
+  int32 total = 2;
+}
+message PointCache{
+  int32 pointId = 1;
+  string pointName = 2;
+  string pointAddress = 3;
+  int32 type = 4;
+  string deviceId = 5;
+  string pointlsSign = 6;
+  string oldValue = 7;
+  string value = 8;
+  uint64 timeStrap = 9;
+  int32 qualityStrap = 10;
+  int32 relevanceId = 11;
+  repeated int32 washArray = 12;
+  string units = 13;
+  string orderValue = 14;
+  int32 dataType = 15;
+  string expandDesc = 16;
+  repeated int32 washDArray = 17;
+  string applicationName = 18;
+  double accidentLower = 19;
+  double accidentHigh = 20;
+  double runningLower = 21;
+  double runningHigh = 22;
+  double rangeLower = 23;
+  bool isAlarm = 24;
+  string pointParameterTypeName = 25;
+  string unitValue = 26;
+  string unitName = 27;
+  string systemName = 28;
+  int32 netFlag = 29;
+  string pointStandardName = 30;
+  int32 level = 31;
+  string descriptionJson = 32;
+  string expression = 33;
+  int32 number = 34;
+  int32 pointConfig = 35;
+
+  string systemNum = 36;
+  int32 parentSyncNum = 37;
+  string  equipmentCode = 38;
+  int32 alarmValue = 39;
+  int32 heatType = 40;
+  string syncNumber = 41;
+
+  int32 grade=42;
+  string alarmDesc = 43;
+
+}

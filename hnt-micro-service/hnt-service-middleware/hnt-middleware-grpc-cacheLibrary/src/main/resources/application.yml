@@ -1,0 +1,11 @@
+server:
+  port: 18002
+spring:
+  application:
+    name: middleware-chche-library
+    id: 68728123
+heartbeat:
+  heartBeatHost: 0.0.0.0
+  heartBeatPort: 9999
+  heartBeatTpye: 1
+

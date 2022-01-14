@@ -1,0 +1,2 @@
+signalr:
+  server_urls: ws://10.0.31.13:9004/RealValueHub,ws://10.0.31.13:9005/RealValueHub,ws://10.0.31.13:9006/RealValueHub

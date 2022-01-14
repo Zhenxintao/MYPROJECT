@@ -1,0 +1,11 @@
+server:
+  port: 4590
+spring:
+  application:
+    name: bussiness_baseInfomation
+
+  profiles:
+    active: ${package.environment}
+
+
+

@@ -1,0 +1,48 @@
+<configuration>
+    <!--    <property name="LOG_PATH"-->
+    <!--              value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/data/applogs}}}"/>-->
+    <springProperty scope="context" name="LOG_PATH" source="spring.application.name"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 第一个文件输出,每天产生一个文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 输出文件路径+文件名 -->
+            <fileNamePattern>./logs/${LOG_PATH}/%d{yyyyMMdd}.log</fileNamePattern>
+            <!-- 保存7天的日志 -->
+            <maxHistory>7</maxHistory>
+            <!--            <maxFileSize>100MB</maxFileSize>-->
+        </rollingPolicy>
+        <filter class="com.bmts.heating.commons.utils.filter.LogFilter">
+            <flag>收到服务治理中心,服务令牌放入本地缓存池</flag>
+        </filter>
+        <encoder charset="UTF-8">
+            <!-- 输出日志记录格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{200} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>server3:9900</destination>
+        <!--                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <!--                    <level>ERROR</level>-->
+        <!--                </filter>-->
+        <filter class="com.bmts.heating.commons.utils.filter.LogFilter">
+            <flag>收到服务治理中心,服务令牌放入本地缓存池,服务</flag>
+        </filter>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"appname": "${LOG_PATH}"}</customFields>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+</configuration>
+
+

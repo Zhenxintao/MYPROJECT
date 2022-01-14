@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hnt-application-bussiness-netBalance:war">
+    <output-path>$PROJECT_DIR$/hnt-micro-service/hnt-service-application/hnt-application-bussiness-netBalance/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hnt-application-bussiness-netBalance</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="netBalance.war">
+      <element id="artifact" artifact-name="hnt-application-bussiness-netBalance:war exploded" />
+    </root>
+  </artifact>
+</component>

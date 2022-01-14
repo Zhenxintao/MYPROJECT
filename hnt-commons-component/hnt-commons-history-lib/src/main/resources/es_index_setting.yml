@@ -1,0 +1,26 @@
+tscc:
+  indexs:
+    - name: point_history_first
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1
+    - name: point_history_second
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1
+    - name: point_history_house
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1
+    - name: point_hot_first
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1
+    - name: point_hot_second
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1
+    - name: point_hot_house
+      setting:
+        number_of_shards: 3,
+        number_of_replicas: 1

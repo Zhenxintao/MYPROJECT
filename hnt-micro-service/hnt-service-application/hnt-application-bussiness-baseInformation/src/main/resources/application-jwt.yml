@@ -1,0 +1,5 @@
+ignore:
+  urls:
+   - 'swagger'
+   - 'import'
+   - 'login'

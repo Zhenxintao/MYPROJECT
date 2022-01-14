@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.table";
+service TableOpt {
+  rpc buildSuper(Table) returns (BoolResult) {}
+  rpc addColumn(NewColumn) returns(BoolResult) {}
+  rpc delColumn(TableColumn) returns(BoolResult) {}
+  rpc delTable(Table) returns(BoolResult) {}
+}
+message Table{
+  repeated Columns point = 1;
+  repeated Columns tags = 2;
+  string tableName = 3;
+}
+message TableColumn{
+  string columnName = 1;
+  string tableName = 2;
+}
+message NewColumn{
+  Columns column = 1;
+  string tableName = 2;
+}
+message Columns{
+  string columnName = 1;
+  ColumnType columnType = 2;
+}
+enum ColumnType{
+  STRING = 0;
+  INT = 1;
+  DOUBLE = 2;
+  FLOAT = 3;
+  BOOL = 4;
+  NCHAR = 5;
+  TIMESTAMP = 6;
+}

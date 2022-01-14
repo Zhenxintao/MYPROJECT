@@ -1,0 +1,12 @@
+server:
+  port: 3389
+spring:
+  application:
+    name: monitor_server
+  profiles:
+    active: ${package.environment}
+
+
+
+auth:
+  appkey: bmts_monitor_key_5a8729065f498d

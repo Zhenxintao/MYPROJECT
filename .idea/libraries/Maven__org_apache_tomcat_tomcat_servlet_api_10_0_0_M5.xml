@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.tomcat:tomcat-servlet-api:10.0.0-M5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../maven-jilin-branch/repository/org/apache/tomcat/tomcat-servlet-api/10.0.0-M5/tomcat-servlet-api-10.0.0-M5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../maven-jilin-branch/repository/org/apache/tomcat/tomcat-servlet-api/10.0.0-M5/tomcat-servlet-api-10.0.0-M5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../maven-jilin-branch/repository/org/apache/tomcat/tomcat-servlet-api/10.0.0-M5/tomcat-servlet-api-10.0.0-M5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

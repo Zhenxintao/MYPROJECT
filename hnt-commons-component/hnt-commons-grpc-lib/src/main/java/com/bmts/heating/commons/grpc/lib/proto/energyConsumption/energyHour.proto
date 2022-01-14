@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.energyConsumption";
+service EnergyHour{
+   rpc insert(InsertRequest) returns (BoolResult){}
+}
+message InsertRequest{
+  string stableName = 1;
+  string tableName = 2;
+  Tag tag = 3;
+  repeated Data data = 4;
+  int64 startTime=5;
+  int64 endTime=6;
+}
+
+message Tag{
+  int32 groupId = 1;
+  int32 level = 2;
+}
+
+
+message Data{
+  int64 ts = 1;
+  repeated PointValue point =2;
+}
+
+message PointValue{
+  string name = 1;
+  double value = 2;
+}

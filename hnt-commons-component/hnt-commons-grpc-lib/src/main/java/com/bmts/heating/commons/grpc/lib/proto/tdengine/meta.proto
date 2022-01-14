@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "common/common.proto";
+option java_package = "com.bmts.heating.commons.grpc.lib.services.tdengine";
+
+service Meta{
+  rpc insert(Request) returns (BoolResult){}
+}
+
+message Request{
+  repeated TableInfo devices = 1;
+}
+message TableInfo{
+  string stableName = 1;
+  string tableName = 2;
+  int64 ts = 3;
+  repeated PointData points = 4;
+  repeated PointData tags = 5;
+}
+message PointData{
+  string pointName = 1;
+  string pointValue = 2;
+}

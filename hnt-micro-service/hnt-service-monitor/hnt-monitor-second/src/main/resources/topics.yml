@@ -1,0 +1,12 @@
+topics:
+  device_info:
+    topicName: second_device_info #需要消费的kafka的主题名称  # 下发任务的队列
+    group_id: second_device_consume #消费组名称
+    policy: 1  #消费策略 0：单线程，单消费；1：多线程,单组消费多分区(一个group消费所有分区) 2：多线程,多组消费多分区(一个group消费一个分区,多个group消费所有分区)
+    application_num: 3 #服务实例数 应该小于服务实际实例数、节点数
+
+  device_fault:
+    topicName: second_device_fault #需要消费的kafka的主题名称   # 生产的队列
+    group_id: second_device_fault_consume #消费组名称
+    policy: 1  #消费策略 0：单线程，单消费；1：多线程,单组消费多分区(一个group消费所有分区) 2：多线程,多组消费多分区(一个group消费一个分区,多个group消费所有分区)
+    application_num: 3 #服务实例数 应该小于服务实际实例数、节点数

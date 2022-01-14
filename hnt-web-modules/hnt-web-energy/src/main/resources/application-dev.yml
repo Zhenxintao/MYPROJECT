@@ -1,0 +1,10 @@
+spring:
+  application:
+    id: 623451231312
+  profiles: dev
+micro:
+  server:
+    host: energy
+    port: 7172
+    name: energy
+    tokens: 50

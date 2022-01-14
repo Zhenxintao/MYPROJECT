@@ -1,0 +1,36 @@
+spring:
+  application:
+    id: 47481231312123
+  profiles: dev
+
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@10.0.31.32:27017/?authSource=admin
+      database: test
+      option:
+        socket-keep-alive: true
+        max-connection-idle-time: 60000
+        connect-timeout: 36000
+        min-connection-per-host: 5
+        threads-allowed-to-block-for-connection-multiplier: 5
+        max-wait-time: 120000
+        socket-timeout: 0
+        max-connection-life-time: 0
+        heartbeat-socket-timeout: 36000
+        heartbeat-connect-timeout: 36000
+        min-heartbeat-frequency: 5
+        heartbeat-frequency: 10
+
+micro:
+  server:
+    host: job5
+    port: 6789
+    name: job5
+    tokens: 50
+
+
+transport:
+  # 长输 采集数据接口
+  serverUrl: http://100.1.2.1:9567/data
+  # 长输 历史数据接口
+  historyUrl: http://10.0.2.51:8091/redis/history
